@@ -61,6 +61,7 @@
 	.container {
 		margin-left: auto;
 		margin-right: auto;
+		padding-top: 10px
 	}
 
 	.container.\31 25\25 {
@@ -1344,9 +1345,10 @@
 		position: relative;
 		display: inline-block;
 		color: #fff !important;
+		padding-top: 10 px;
 		text-decoration: none;
-		font-weight: 700;
-		border: 0;
+		font-weight: 500;
+		border: 10;
 		outline: 0;
 		cursor: pointer;
 		border-radius: 8px;
@@ -1645,7 +1647,7 @@
 /* Nav */
 
 	#nav {
-		background-color: #282828;
+		background-color:#000079;
 		text-align: center;
 		position: fixed;
 		left: 0;
@@ -2104,3 +2106,28 @@
 				}
 
 	}
+.fontinit {
+		color:#FFFFFF;
+		font-weight: bold;
+	}
+.lefttm{
+	   padding-left:0%
+}
+.centter{
+	 vertical-align: center;
+}
+.buttonnew
+{
+	max-width: 10px;
+	max-height: 10px;
+	position: relative;
+	display: inline-block;
+	color: #fff !important;
+	padding-bottom: 20 px;
+	font-weight: 500;
+	border: 10;
+	outline: 0;
+	cursor: pointer;
+	border-radius: 8px;
+	vertical-align: center;	
+}
