@@ -130,8 +130,8 @@ button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-  -webkit-appearance: button;
   cursor: pointer;
+  -webkit-appearance: button;
 }
 button[disabled],
 html input[disabled] {

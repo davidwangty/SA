@@ -42,7 +42,7 @@
             <div class="navbar-header page-scroll">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                      <a class="navbar-brand" href="index.html">
+                      <a class="navbar-brand" href="#">
                         <!-- <img alt="Brand" src="..."> -->
                         Group 6
                       </a>
@@ -78,33 +78,49 @@
     </nav>
 
 
+    <!-- Insert into database -->
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <br></br>
+            <br></br>
+            <br></br>   
+            <?php
+            include("mysql_connect.inc.php");
 
-    <div class="container">
-        <div class="col-md-6 column">
-            <form role="form" method="POST" action="commtact.php">
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <h3>
-                辦活動~~~!
-                </h3>
-                <div class="form-group">
-                    <label for="exampleInputlength">使用者名稱</label><input type="text" class="form-control" name="A_name1">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputlength">活動名稱</label><input type="text" class="form-control" name="A_name2">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputpublish">活動日期</label><input type="date" class="form-control" name="A_date">
-                </div>
-                <button type="submit" class="btn btn-default">送出</button>
-                <br>
-                <br>
-            </form>
+            $A_name1 = @$_POST['A_name1'];
+            $A_name2 = @$_POST['A_name2'];
+            $A_date = @$_POST['A_date'];
+            
+            
+            if($A_name1 != null && $A_name2 != null && $A_date != null)
+            {
+                //新增資料進資料庫語法
+                $str="SELECT 活動ID FROM 活動";
+                $list = mysql_query($str);
+                $n = mysql_num_rows($list);
+                $n = $n + 1;
+                $sql = "insert into 活動 (活動ID, 使用者名稱, 活動名稱, 活動時間) values ('$n', '$A_name1', '$A_name2', '$A_date')";
+                if(mysql_query($sql))
+                {
+                    echo '<h3>活動創辦成功!!</h3>';
+                }
+                else
+                {
+                    echo '活動創辦失敗!<br>';
+                }
+            }
+            else
+            {
+                $chk=1;
+                $err=$err."專輯資訊";
+            }
+            ?>
+            <br>
+            <a href="index.html" class="btn" type="button">回首頁</a>
+            <a href="create.php" class="btn" type="button">再辦活動</a>
         </div>
     </div>
+
 
     <!-- Footer -->
     <footer class="text-center">
