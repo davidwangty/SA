@@ -120,7 +120,7 @@
                         echo    '</td><td>';
                         echo    $va[1];
                         echo    '</td><td>';
-                        echo    $va[2];
+                        echo    '<a href="show.php?id='.$va[0].'"">'.$va[2].'</a>';
                         echo    '</td><td>';
                         echo    $va[3];
                         echo    '</td><td>';

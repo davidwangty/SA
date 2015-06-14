@@ -9,8 +9,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-
     <title>Event Management</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
@@ -78,59 +76,30 @@
     </nav>
 
 
-    <!-- Insert into database -->
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <br></br>
-            <br></br>
-            <br></br>   
-            <?php
-            include("mysql_connect.php");
 
-            $name1 = @$_POST['name1'];
-            $name2 = @$_POST['name2'];
-            $date = @$_POST['date'];
-            $info = @$_POST['info'];
-            $filename = @$_FILES['image']['name'];
-            $tmpname = @$_FILES['image']['tmp_name'];
-            $filetype = @$_FILES['image']['type'];
-            $filesize = @$_FILES['image']['size'];
-            $file = fopen($tmpname, "rb");
-            $fileContents = fread($file, filesize($tmpname));
-            fclose($file);
-            $fileContents = base64_encode($fileContents);
-                    
-            
-
-            if($name1 != null && $name2 != null && $date != null)
-            {
-                    //新增資料進資料庫語法
-                    $str="SELECT 活動ID FROM 活動";
-                    $list = mysql_query($str);
-                    $n = mysql_num_rows($list);
-                    $n = $n + 1;
-                    $sql = "insert into 活動 (活動ID, 使用者名稱, 活動名稱, 活動日期, 活動資訊, 圖片, 圖片格式) values ('$n', '$name1', '$name2', '$date', '$info', '".$fileContents."','". $filetype . "')";
-                    if(mysql_query($sql))
-                    {
-                            echo '<h3>活動創辦成功!!</h3>';
-                    }
-                    else
-                    {
-                            echo '活動創辦失敗!<br>';
-                    }
-            }
-            else
-            {
-                    echo '<h3>資訊錯誤<h3>';
-            }
-            ?>
-            
+    <div class="container">
+        <div class="col-md-6 column">
             <br>
-            <a href="index.html" class="btn" type="button">回首頁</a>
-            <a href="create.php" class="btn" type="button">再辦活動</a>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <?php
+                include("mysql_connect.php");
+                $id = @$_GET['id'];
+                $str="SELECT * FROM 活動 WHERE 活動ID = $id";
+                $list = mysql_query($str);
+                $va = mysql_fetch_row($list);
+                echo "<h3>".$va[2]."</h3>";
+                echo $va[3];
+                echo "<br>";
+                echo $va[4];
+                echo "<br>";
+            ?>
         </div>
     </div>
-
 
     <!-- Footer -->
     <footer class="text-center">
