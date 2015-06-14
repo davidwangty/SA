@@ -79,7 +79,7 @@
 
     <div class="container">
         <div class="col-md-6 column">
-            <form role="form" method="POST" action="commtact.php">
+            <form role="form" method="POST" action="commitact.php">
                 <br>
                 <br>
                 <br>
