@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,7 +90,7 @@
             <?php
             include("mysql_connect.php");
 
-            $name1 = @$_POST['name1'];
+            $name1 = @$_SESSION['username'];
             $name2 = @$_POST['name2'];
             $date = @$_POST['date'];
             $info = @$_POST['info'];

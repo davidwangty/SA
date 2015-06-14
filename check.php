@@ -88,7 +88,7 @@
             <br>
             <br>
             <br>
-            
+            <br>
             <?php
                 include("mysql_connect.php");
                 $id = $_POST['id'];
@@ -100,12 +100,13 @@
                     //將帳號寫入session，方便驗證使用者身份
                     $_SESSION['username'] = $id;
                     echo '<h3>登入成功!</h3>';
+                    echo '<meta http-equiv=REFRESH CONTENT=1;url='.$_SESSION['back'].'>';   
                 }
                 else
                 {
                     echo '<h3>登入失敗!</h3>';
-                }
-                echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';    
+                    echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';   
+                } 
             ?>
         </div>
     </div>

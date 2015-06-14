@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -99,10 +100,8 @@
                 echo "<br>";
                 echo $va[4];
                 echo "<br>";
+                echo '<a href = "add.php?id='.$id.'">參加</a>';
             ?>
-            <form role="form" method="POST" action="add.php">
-                <button type="submit" class="btn btn-default">參加</button>
-            </form>
         </div>
     </div>
 

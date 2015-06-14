@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,27 +79,31 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-
-
-    <!-- Insert into database -->
-     <div class="container">
+    <div class="container">
         <div class="col-md-6 column">
-            <form role="form" method="POST" action="commitadd.php" Enctype="multipart/form-data">
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <h3>
-                輸入你的大名
-                </h3>
-                <div class="form-group">
-                    <label for="exampleInputlength">使用者名稱</label><input type="text" class="form-control" name="name">
-                </div>
-                <button type="submit" class="btn btn-default">送出</button>
-                <br>
-                <br>
-            </form>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <?php 
+                include("mysql_connect.php");
+                if(@$_SESSION['username'] != null){
+                    $sql = "insert into 參加 (username, 活動ID) values ('".@$_SESSION['username']."',". @$_GET['id'] . ")";  
+                    if(mysql_query($sql)){
+                        echo '<h3>參加成功!!</h3>';
+                    }
+                    else
+                    {
+                        echo '<h3>參加失敗!</h3><br>';
+                    }
+                    // echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>'; 
+                }else{
+                    echo '<h3>請先登入</h3>';
+                    $_SESSION['back'] = "add.php";
+                    echo '<meta http-equiv=REFRESH CONTENT=1;url=login.php>';   
+                }
+            ?>
         </div>
     </div>
 
