@@ -10,7 +10,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Freelancer - Start Bootstrap Theme</title>
+    <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
+    <title>Event Management</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -79,61 +81,36 @@
     </nav>
 
 
-
-    <div class="container">
+    <!-- Insert into database -->
+     <div class="container">
         <div class="col-md-6 column">
             <br>
             <br>
             <br>
             <br>
             <br>
-            <h3>
-            Result:
-            </h3>
             <?php
-            include("mysql_connect.php");
-            $search = @$_POST['search'];
-
-            $sql = "SELECT 活動ID, 使用者名稱, 活動名稱, 活動日期 FROM 活動 WHERE (活動ID = '%$search%' OR 使用者名稱 LIKE '%$search%' OR 活動名稱 LIKE '%$search%') ORDER BY 活動日期";
-            $list = mysql_query($sql);
+                include("mysql_connect.php");
+                $id = $_POST['id'];
+                $pw = $_POST['pw'];
+                $sql = "SELECT * FROM account where username = '$id'";
+                $result = mysql_query($sql);
+                $row = mysql_fetch_row($result);
+                if($id != null && $pw != null && $row[0] == $id && $row[1] == $pw){
+                    //將帳號寫入session，方便驗證使用者身份
+                    $_SESSION['username'] = $id;
+                    echo '<h3>登入成功!</h3>';
+                    echo '<meta http-equiv=REFRESH CONTENT=1;url='.$_SESSION['back'].'>';   
+                }
+                else
+                {
+                    echo '<h3>登入失敗!</h3>';
+                    echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';   
+                } 
             ?>
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>
-                            活動ID
-                        </th>
-                        <th>
-                            使用者名稱
-                        </th>
-                        <th>
-                            活動名稱
-                        </th>
-                        <th>
-                            活動日期
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    while($va = mysql_fetch_row($list))
-                    {
-                        echo    '<tr><td>';
-                        echo    $va[0];
-                        echo    '</td><td>';
-                        echo    $va[1];
-                        echo    '</td><td>';
-                        echo    '<a href="show.php?id='.$va[0].'"">'.$va[2].'</a>';
-                        echo    '</td><td>';
-                        echo    $va[3];
-                        echo    '</td><td>';
-                    }
-                    
-                    ?>
-                </tbody>
-            </table>
         </div>
     </div>
+
 
     <!-- Footer -->
     <footer class="text-center">

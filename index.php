@@ -10,7 +10,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Freelancer - Start Bootstrap Theme</title>
+    <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
+    <title>Event Management</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +37,7 @@
 <body id="page-top" class="index">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
@@ -77,63 +79,123 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
+    
 
-
-
-    <div class="container">
-        <div class="col-md-6 column">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <h3>
-            Result:
-            </h3>
-            <?php
-            include("mysql_connect.php");
-            $search = @$_POST['search'];
-
-            $sql = "SELECT 活動ID, 使用者名稱, 活動名稱, 活動日期 FROM 活動 WHERE (活動ID = '%$search%' OR 使用者名稱 LIKE '%$search%' OR 活動名稱 LIKE '%$search%') ORDER BY 活動日期";
-            $list = mysql_query($sql);
-            ?>
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>
-                            活動ID
-                        </th>
-                        <th>
-                            使用者名稱
-                        </th>
-                        <th>
-                            活動名稱
-                        </th>
-                        <th>
-                            活動日期
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    while($va = mysql_fetch_row($list))
-                    {
-                        echo    '<tr><td>';
-                        echo    $va[0];
-                        echo    '</td><td>';
-                        echo    $va[1];
-                        echo    '</td><td>';
-                        echo    '<a href="show.php?id='.$va[0].'"">'.$va[2].'</a>';
-                        echo    '</td><td>';
-                        echo    $va[3];
-                        echo    '</td><td>';
-                    }
-                    
-                    ?>
-                </tbody>
-            </table>
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+            <p align="middle"><img alt="Scenary" src="img/1.jpg" width="900"></p>
+          <div class="container">
+            <div class="carousel-caption">
+              <h1 class="style1"><span lang="zh-tw"><strong>
+                <span>天天握手會</span></strong></span></h1>
+              <p><span lang="zh-tw"><span class="style2">即日起開放報名！</span></span></p>
+            </div>
+          </div>
         </div>
+        <div class="item">
+          <p align="middle"><img alt="Scenary" src="img/1.jpg" width="900"></p>
+          <div class="container">
+            <div class="carousel-caption">
+              <h1 class="style1">cute!cute!cute!</h1>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+            <p align="middle"><img alt="Scenary" src="img/1.jpg" width="900"></p>
+          <div class="container">
+            <div class="carousel-caption">
+              <h1><span class="style2">cute!cute!</span></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div>
+    <!-- /.carousel -->
+
+    <!-- Portfolio Grid Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Portfolio</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/cabin.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/cake.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/circus.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/game.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/safe.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/submarine.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="text-center">

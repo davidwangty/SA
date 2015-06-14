@@ -10,7 +10,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Freelancer - Start Bootstrap Theme</title>
+    <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
+    <title>Event Management</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -77,9 +79,6 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-
-
-
     <div class="container">
         <div class="col-md-6 column">
             <br>
@@ -87,53 +86,27 @@
             <br>
             <br>
             <br>
-            <h3>
-            Result:
-            </h3>
-            <?php
-            include("mysql_connect.php");
-            $search = @$_POST['search'];
-
-            $sql = "SELECT 活動ID, 使用者名稱, 活動名稱, 活動日期 FROM 活動 WHERE (活動ID = '%$search%' OR 使用者名稱 LIKE '%$search%' OR 活動名稱 LIKE '%$search%') ORDER BY 活動日期";
-            $list = mysql_query($sql);
-            ?>
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>
-                            活動ID
-                        </th>
-                        <th>
-                            使用者名稱
-                        </th>
-                        <th>
-                            活動名稱
-                        </th>
-                        <th>
-                            活動日期
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    while($va = mysql_fetch_row($list))
-                    {
-                        echo    '<tr><td>';
-                        echo    $va[0];
-                        echo    '</td><td>';
-                        echo    $va[1];
-                        echo    '</td><td>';
-                        echo    '<a href="show.php?id='.$va[0].'"">'.$va[2].'</a>';
-                        echo    '</td><td>';
-                        echo    $va[3];
-                        echo    '</td><td>';
+            <?php 
+                include("mysql_connect.php");
+                if(@$_SESSION['username'] != null){
+                    $sql = "insert into 參加 (username, 活動ID) values ('".@$_SESSION['username']."',". @$_GET['id'] . ")";  
+                    if(mysql_query($sql)){
+                        echo '<h3>參加成功!!</h3>';
                     }
-                    
-                    ?>
-                </tbody>
-            </table>
+                    else
+                    {
+                        echo '<h3>參加失敗!</h3><br>';
+                    }
+                    // echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>'; 
+                }else{
+                    echo '<h3>請先登入</h3>';
+                    $_SESSION['back'] = "add.php";
+                    echo '<meta http-equiv=REFRESH CONTENT=1;url=login.php>';   
+                }
+            ?>
         </div>
     </div>
+
 
     <!-- Footer -->
     <footer class="text-center">
