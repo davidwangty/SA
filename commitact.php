@@ -42,7 +42,7 @@
             <div class="navbar-header page-scroll">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                      <a class="navbar-brand" href="index.html">
+                      <a class="navbar-brand" href="index.php">
                         <!-- <img alt="Brand" src="..."> -->
                         Group 6
                       </a>
@@ -63,12 +63,14 @@
                     <li>
                         <a href="create.php">辦活動</a>
                     </li>
-                    <li>
-                        <a href="index.html">註冊</a>
-                    </li>
-                    <li>
-                        <a href="index.html">登入</a>
-                    </li>
+                    <?php 
+                        if(@$_SESSION['username'] != null){
+                            echo '<li><a href = "manage.php">'.@$_SESSION['username'].'</a><li><a href = "logout.php">登出</a>';
+                        }
+                        else{
+                            echo '<li><a href="register.php">註冊</a></li><li><a href="login.php">登入</a></li>';
+                        }
+                    ?>
                 </ul>
             </div>
 
@@ -127,7 +129,7 @@
             ?>
 
             <br>
-            <a href="index.html" class="btn" type="button">回首頁</a>
+            <a href="index.php" class="btn" type="button">回首頁</a>
             <a href="create.php" class="btn" type="button">再辦活動</a>
         </div>
     </div>

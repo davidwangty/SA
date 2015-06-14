@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 
     <title>Event Management</title>
 
@@ -78,39 +81,35 @@
     </nav>
 
 
-
-    <div class="container">
+    <!-- Insert into database -->
+     <div class="container">
         <div class="col-md-6 column">
-            <form role="form" method="POST" action="commitact.php" Enctype="multipart/form-data">
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <h3>
-                辦活動~~~!
-                </h3>
-                <div class="form-group">
-                    <label for="exampleInputlength">使用者名稱</label><input type="text" class="form-control" name="name1">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputlength">活動名稱</label><input type="text" class="form-control" name="name2">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputpublish">活動日期</label><input type="date" class="form-control" name="date">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputlength">活動資訊</label><input type="text" class="form-control" name="info">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputlength">活動圖片</label><input type="file" name="image">
-                </div>
-                <button type="submit" class="btn btn-default">送出</button>
-                <br>
-                <br>
-            </form>
+            <br>
+            <br>
+            <br>
+            <br>
+            
+            <?php
+                include("mysql_connect.php");
+                $id = $_POST['id'];
+                $pw = $_POST['pw'];
+                $sql = "SELECT * FROM account where username = '$id'";
+                $result = mysql_query($sql);
+                $row = mysql_fetch_row($result);
+                if($id != null && $pw != null && $row[0] == $id && $row[1] == $pw){
+                    //將帳號寫入session，方便驗證使用者身份
+                    $_SESSION['username'] = $id;
+                    echo '<h3>登入成功!</h3>';
+                }
+                else
+                {
+                    echo '<h3>登入失敗!</h3>';
+                }
+                echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';    
+            ?>
         </div>
     </div>
+
 
     <!-- Footer -->
     <footer class="text-center">

@@ -9,6 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
     <title>Event Management</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
@@ -78,39 +80,47 @@
     </nav>
 
 
+    <!-- Insert into database -->
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <br></br>
+            <br></br>
+            <br></br>   
+            <?php
+            include("mysql_connect.php");
 
-    <div class="container">
-        <div class="col-md-6 column">
-            <form role="form" method="POST" action="commitact.php" Enctype="multipart/form-data">
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <h3>
-                辦活動~~~!
-                </h3>
-                <div class="form-group">
-                    <label for="exampleInputlength">使用者名稱</label><input type="text" class="form-control" name="name1">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputlength">活動名稱</label><input type="text" class="form-control" name="name2">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputpublish">活動日期</label><input type="date" class="form-control" name="date">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputlength">活動資訊</label><input type="text" class="form-control" name="info">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputlength">活動圖片</label><input type="file" name="image">
-                </div>
-                <button type="submit" class="btn btn-default">送出</button>
-                <br>
-                <br>
-            </form>
+            $id = @$_POST['id'];
+            $pw = @$_POST['pw'];  
+            $pw2 = @$_POST['pw2'];                           
+
+            if($id != null && $pw != null && $pw == $pw2)
+            {
+                //新增資料進資料庫語法
+                $sql = "insert into account (username, password) values ('$id', '$pw')";
+                if(mysql_query($sql))
+                {
+                    echo '<h3>帳號創建成功!!</h3>';
+                }
+                else
+                {
+                    echo '帳號創建失敗!<br>';
+                }
+            }
+            elseif($pw != $pw2){
+                echo '<h3>密碼不一致<h3>';
+            }
+            else
+            {
+                echo '<h3>帳號密碼不可為空<h3>';
+            }
+            ?>
+
+            <br>
+            <a href="index.php" class="btn" type="button">回首頁</a>
+            <a href="create.php" class="btn" type="button">再辦活動</a>
         </div>
     </div>
+
 
     <!-- Footer -->
     <footer class="text-center">
