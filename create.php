@@ -79,7 +79,7 @@
 
     <div class="container">
         <div class="col-md-6 column">
-            <form role="form" method="POST" action="commitact.php">
+            <form role="form" method="POST" action="commitact.php" Enctype="multipart/form-data">
                 <br>
                 <br>
                 <br>
@@ -89,13 +89,19 @@
                 辦活動~~~!
                 </h3>
                 <div class="form-group">
-                    <label for="exampleInputlength">使用者名稱</label><input type="text" class="form-control" name="A_name1">
+                    <label for="exampleInputlength">使用者名稱</label><input type="text" class="form-control" name="name1">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputlength">活動名稱</label><input type="text" class="form-control" name="A_name2">
+                    <label for="exampleInputlength">活動名稱</label><input type="text" class="form-control" name="name2">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputpublish">活動日期</label><input type="date" class="form-control" name="A_date">
+                    <label for="exampleInputpublish">活動日期</label><input type="date" class="form-control" name="date">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputlength">活動資訊</label><input type="text" class="form-control" name="info">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputlength">活動圖片</label><input type="file" name="image">
                 </div>
                 <button type="submit" class="btn btn-default">送出</button>
                 <br>

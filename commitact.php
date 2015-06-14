@@ -87,21 +87,29 @@
             <?php
             include("mysql_connect.php");
 
-            $A_name1 = @$_POST['A_name1'];
-            $A_name2 = @$_POST['A_name2'];
-            $A_date = @$_POST['A_date'];
-
-
+            $name1 = @$_POST['name1'];
+            $name2 = @$_POST['name2'];
+            $date = @$_POST['date'];
+            $info = @$_POST['info'];
+            $filename = @$_FILES['image']['name'];
+            $tmpname = @$_FILES['image']['tmp_name'];
+            $filetype = @$_FILES['image']['type'];
+            $filesize = @$_FILES['image']['size'];
+            $file = fopen($tmpname, "rb");
+            $fileContents = fread($file, filesize($tmpname));
+            fclose($file);
+            $fileContents = base64_encode($fileContents);
+                    
             
-            
-            if($A_name1 != null && $A_name2 != null && $A_date != null)
+
+            if($name1 != null && $name2 != null && $date != null)
             {
                     //新增資料進資料庫語法
                     $str="SELECT 活動ID FROM 活動";
                     $list = mysql_query($str);
                     $n = mysql_num_rows($list);
                     $n = $n + 1;
-                    $sql = "insert into 活動 (活動ID, 使用者名稱, 活動名稱, 活動日期) values ('$n', '$A_name1', '$A_name2', '$A_date')";
+                    $sql = "insert into 活動 (活動ID, 使用者名稱, 活動名稱, 活動日期, 活動資訊, 圖片, 圖片格式) values ('$n', '$name1', '$name2', '$date', '$info', '".$fileContents."','". $filetype . "')";
                     if(mysql_query($sql))
                     {
                             echo '<h3>活動創辦成功!!</h3>';
@@ -114,7 +122,7 @@
             else
             {
                     echo '<h3>資訊錯誤<h3>';
-            }   
+            }
             ?>
             <br>
             <a href="index.html" class="btn" type="button">回首頁</a>
