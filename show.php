@@ -98,6 +98,9 @@
                 echo $va[4];
                 echo "<br>";
             ?>
+            <form role="form" method="POST" action="commitadd.php">
+                <button type="submit" class="btn btn-default">參加</button>
+            </form>
         </div>
     </div>
 
