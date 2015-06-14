@@ -74,9 +74,6 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-
-
-
     <div class="container">
         <div class="col-md-6 column">
             <form role="form" method="POST" action="commitact.php" Enctype="multipart/form-data">
@@ -98,7 +95,7 @@
                     <label for="exampleInputpublish">活動日期</label><input type="date" class="form-control" name="date">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputlength">活動資訊</label><input type="text" class="form-control" name="info">
+                    <label for="exampleInputlength">活動資訊</label><textarea nrow="5" type="text" class="form-control" name="info">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputlength">活動圖片</label><input type="file" name="image">
