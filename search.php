@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Event Management</title>
+    <title>Freelancer - Start Bootstrap Theme</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -79,28 +79,56 @@
 
     <div class="container">
         <div class="col-md-6 column">
-            <form role="form" method="POST" action="commtact.php">
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <h3>
-                辦活動~~~!
-                </h3>
-                <div class="form-group">
-                    <label for="exampleInputlength">使用者名稱</label><input type="text" class="form-control" name="A_name1">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputlength">活動名稱</label><input type="text" class="form-control" name="A_name2">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputpublish">活動日期</label><input type="date" class="form-control" name="A_date">
-                </div>
-                <button type="submit" class="btn btn-default">送出</button>
-                <br>
-                <br>
-            </form>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h3>
+            Result:
+            </h3>
+            <?php
+            include("mysql_connect.inc.php");
+            $search = @$_POST['search'];
+
+            $sql = "SELECT 活動ID, 使用者名稱, 活動名稱, 活動日期 FROM 活動 WHERE (活動ID = '%$search%' OR 使用者名稱 LIKE '%$search%' OR 活動名稱 LIKE '%$search%') ORDER BY 活動日期";
+            $list = mysql_query($sql);
+            ?>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            活動ID
+                        </th>
+                        <th>
+                            使用者名稱
+                        </th>
+                        <th>
+                            活動名稱
+                        </th>
+                        <th>
+                            活動日期
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    while($va = mysql_fetch_row($list))
+                    {
+                        echo    '<tr><td>';
+                        echo    $va[0];
+                        echo    '</td><td>';
+                        echo    $va[1];
+                        echo    '</td><td>';
+                        echo    $va[2];
+                        echo    '</td><td>';
+                        echo    $va[3];
+                        echo    '</td><td>';
+                    }
+                    
+                    ?>
+                </tbody>
+            </table>
         </div>
     </div>
 
