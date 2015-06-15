@@ -92,17 +92,26 @@
       </ol>
       <div class="carousel-inner">
         <div class="item active">
-            <p align="middle"><img alt="Scenary" src="img/1.jpg" width="900"></p>
-          <div class="container">
-            <div class="carousel-caption">
-              <h1 class="style1"><span lang="zh-tw"><strong>
-                <span>天天握手會</span></strong></span></h1>
-              <p><span lang="zh-tw"><span class="style2">即日起開放報名！</span></span></p>
+            <p align="middle">
+                <img alt="Scenary" src="img/1.jpg" width="500">
+            </p>
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1 class="style1">
+                        <span lang="zh-tw">
+                            <strong>
+                                <span>天天握手會</span>
+                            </strong>
+                        </span>
+                    </h1>
+                    <p><span lang="zh-tw"><span class="style2">即日起開放報名！</span></span></p>
+                </div>
             </div>
-          </div>
         </div>
         <div class="item">
-          <p align="middle"><img alt="Scenary" src="img/1.jpg" width="900"></p>
+          <p align="middle">
+                <img alt="Scenary" src="img/2.jpg" width="500">
+          </p>
           <div class="container">
             <div class="carousel-caption">
               <h1 class="style1">cute!cute!cute!</h1>
@@ -110,7 +119,9 @@
           </div>
         </div>
         <div class="item">
-            <p align="middle"><img alt="Scenary" src="img/1.jpg" width="900"></p>
+          <p align="middle">
+                <img alt="Scenary" src="img/3.jpg" width="500">
+          </p>
           <div class="container">
             <div class="carousel-caption">
               <h1><span class="style2">cute!cute!</span></h1>

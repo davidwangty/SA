@@ -29,6 +29,18 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type='text/css'>
+    #sidebar2 {width:40%;
+               float:left;
+              }
+    #content2 {width:60%;
+               float:left;
+              }
+    #content3 {width:90%;
+               float:right;
+              }
+
+    </style>
 
 </head>
 
@@ -72,38 +84,65 @@
                     ?>
                 </ul>
             </div>
-
             <!-- /.navbar-collapse -->
         </div>
+        <div class="container-fluid" style="background:#eeeeee">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#info" style="color:darkblue">活動資訊</a></li>
+                    <li><a href="#QA" style="color:darkblue">Q&A </a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <?php
+                        $id = @$_GET['id'];
+                        echo '<li><a href = "add.php?id='.$id.'" style="color:darkblue">追蹤</a></li>';
+                        echo '<li><a href = "add.php?id='.$id.'" style="color:darkblue">參加</a></li>';
+                    ?>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
         <!-- /.container-fluid -->
     </nav>
 
-
-
-    <div class="container">
-        <div class="col-md-6 column">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+    <div class="container-fluid">
+        <br><br><br><br><br>
+        <div id="sidebar2">
+            <br><br><p align="center"><img src="img/1.jpg" width="300"></p><br><br>
+        </div>
+        <div id="content2">
             <?php
                 include("mysql_connect.php");
                 $id = @$_GET['id'];
                 $str="SELECT * FROM 活動 WHERE 活動ID = $id";
                 $list = mysql_query($str);
                 $va = mysql_fetch_row($list);
-                echo "<h3>".$va[2]."</h3>";
-                echo $va[3];
-                echo "<br>";
-                echo $va[4];
-                echo "<br>";
-                echo '<a href = "add.php?id='.$id.'">參加</a>';
+                echo '<br><br><h1>'.$va[2].'</h1>';
+                echo '<p>'.$va[1].'</p><br><br>';
+                echo '<p>日期：06/22</p>';
+                echo '<p>時間：12:30-13:10</p>';
+                echo '<p>地點：臺大二活蘇格拉底廳</p>';
             ?>
         </div>
     </div>
+
+    <div class="container-fluid" style="background:#ecf0f1">
+        <div id="content3">
+            <h1>活動資訊</h1>
+            <?php
+                echo '<p>'.$va[4].'</p>';
+            ?>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div id="content3">
+            <h1>Q&A</h1>
+            <p>...</p>
+        </div>
+    </div>
+
+    
 
     <!-- Footer -->
     <footer class="text-center">

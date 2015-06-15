@@ -82,7 +82,7 @@
 
 
     <!-- Insert into database -->
-    <div class="row clearfix">
+    <div class="container">
         <div class="col-md-12 column">
             <br></br>
             <br></br>
@@ -94,15 +94,17 @@
             $name2 = @$_POST['name2'];
             $date = @$_POST['date'];
             $info = @$_POST['info'];
+            if (@$_POST['image'] != null){
+                $filename = @$_FILES['image']['name'];
+                $tmpname = @$_FILES['image']['tmp_name'];
+                $filetype = @$_FILES['image']['type'];
+                $filesize = @$_FILES['image']['size'];
+                $file = fopen($tmpname, "rb");
+                $fileContents = fread($file, filesize($tmpname));
+                fclose($file);
+                $fileContents = base64_encode($fileContents);
+            }
             
-            $filename = @$_FILES['image']['name'];
-            $tmpname = @$_FILES['image']['tmp_name'];
-            $filetype = @$_FILES['image']['type'];
-            $filesize = @$_FILES['image']['size'];
-            $file = fopen($tmpname, "rb");
-            $fileContents = fread($file, filesize($tmpname));
-            fclose($file);
-            $fileContents = base64_encode($fileContents);
                     
             
 
@@ -125,7 +127,7 @@
             }
             else
             {
-                    echo '<h3>資訊錯誤<h3>';
+                    echo '<h3>活動名稱和日期不可為空<h3>';
             }
             ?>
 
