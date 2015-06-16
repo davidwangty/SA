@@ -6,6 +6,7 @@
 
 body {
     overflow-x: hidden;
+    padding-top: 50px;
 }
 
 p {
@@ -167,8 +168,13 @@ header .intro-text .skills {
 
 .navbar-default,
 .navbar-inverse {
+
+    height: 50px;
+    line-height: 50px;
+    padding-top : 0;
     border: 0;
 }
+
 
 section {
     padding: 100px 0;
