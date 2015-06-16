@@ -86,7 +86,6 @@
         <div class="col-md-6 column">
             <br></br>
             <br></br>
-            <br></br>   
             <?php
             $name = @$_POST['name'];
             echo "$name 已報名參加此活動";

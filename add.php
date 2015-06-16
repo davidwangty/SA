@@ -85,7 +85,6 @@
             <br>
             <br>
             <br>
-            <br>
             <?php 
                 include("mysql_connect.php");
                 if(@$_SESSION['username'] != null){

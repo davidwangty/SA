@@ -82,7 +82,7 @@
 
 
     <!-- Insert into database -->
-    <div class="row clearfix">
+    <div class="container">
         <div class="col-md-12 column">
             <br></br>
             <br></br>
@@ -100,25 +100,27 @@
                 $sql = "insert into account (username, password) values ('$id', '$pw')";
                 if(mysql_query($sql))
                 {
-                    echo '<h3>帳號創建成功!!</h3>';
+                    echo '<h3>帳號創建成功!!...等待跳轉</h3>';
+                    $_SESSION['username'] = $id;
+                    echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';   
                 }
                 else
                 {
-                    echo '帳號創建失敗!<br>';
+                    echo '帳號創建失敗!...等待跳轉<br>';
+                    echo '<meta http-equiv=REFRESH CONTENT=1;url=register.php>';   
                 }
             }
             elseif($pw != $pw2){
-                echo '<h3>密碼不一致<h3>';
+                echo '<h3>密碼不一致...等待跳轉<h3>';
+                echo '<meta http-equiv=REFRESH CONTENT=1;url=register.php>';   
             }
             else
             {
-                echo '<h3>帳號密碼不可為空<h3>';
+                echo '<h3>帳號密碼不可為空...等待跳轉<h3>';
+                echo '<meta http-equiv=REFRESH CONTENT=1;url=register.php>';   
             }
             ?>
-
             <br>
-            <a href="index.php" class="btn" type="button">回首頁</a>
-            <a href="create.php" class="btn" type="button">再辦活動</a>
         </div>
     </div>
 

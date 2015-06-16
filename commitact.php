@@ -86,7 +86,6 @@
         <div class="col-md-12 column">
             <br></br>
             <br></br>
-            <br></br>   
             <?php
             include("mysql_connect.php");
 
@@ -94,6 +93,8 @@
             $name2 = @$_POST['name2'];
             $date = @$_POST['date'];
             $info = @$_POST['info'];
+            $fileContents = "";
+            $filetype = "";
             if (@$_POST['image'] != null){
                 $filename = @$_FILES['image']['name'];
                 $tmpname = @$_FILES['image']['tmp_name'];

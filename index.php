@@ -31,6 +31,17 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type='text/css'>
+    #sidebar2 {width:40%;
+               float:left;
+              }
+    #content2 {width:60%;
+               float:left;
+              }
+    #content3 {width:90%;
+               float:right;
+    }
+    </style>
 
 </head>
 
@@ -79,7 +90,8 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-    
+    <br>
+    <br>
 
     <!-- Carousel
     ================================================== -->
@@ -139,72 +151,48 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Portfolio</h2>
+                    <h2>熱門活動</h2>
                     <hr class="star-primary">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
+            <div class="row" >
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="img/1.jpg" alt="" height="100">
+                        <div class="caption" style="background:#eeeeee">
+                            <a href = "show.php?id=1"><h3>天天握手會—2015臺北首站開跑</h3></a>
+                            <p>2015.6.22</p>
+                            <p>12:30p.m.</p>
+                            <p>臺大二活蘇格拉底廳</p>
                         </div>
-                        <img src="img/portfolio/cabin.png" class="img-responsive" alt="">
-                    </a>
+                    </div>
                 </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="img/1.jpg" alt="">
+                        <div class="caption" style="background:#eeeeee">
+                            <a href = "show.php?id=1"><h3>天天握手會—2015臺北首站開跑</h3></a>
+                            <p>2015.6.22</p>
+                            <p>12:30p.m.</p>
+                            <p>臺大二活蘇格拉底廳</p>
                         </div>
-                        <img src="img/portfolio/cake.png" class="img-responsive" alt="">
-                    </a>
+                    </div>
                 </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="img/1.jpg" alt="">
+                        <div class="caption" style="background:#eeeeee">
+                            <a href = "show.php?id=1"><h3>天天握手會—2015臺北首站開跑</h3></a>
+                            <p>2015.6.22</p>
+                            <p>12:30p.m.</p>
+                            <p>臺大二活蘇格拉底廳</p>
                         </div>
-                        <img src="img/portfolio/circus.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/game.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/safe.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/submarine.png" class="img-responsive" alt="">
-                    </a>
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class = container>
+            <a href = "search.php?"><h4>看更多活動</h4></a>
         </div>
     </section>
 

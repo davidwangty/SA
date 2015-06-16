@@ -106,18 +106,23 @@
     </nav>
 
     <div class="container-fluid">
-        <br><br><br><br><br>
         <div id="sidebar2">
-            <br><br><p align="center"><img src="img/1.jpg" width="300"></p><br><br>
+            <br><br><br><br><br><br><br><p align="center"><img src="img/1.jpg" width="300"></p><br><br>
         </div>
         <div id="content2">
             <?php
                 include("mysql_connect.php");
                 $id = @$_GET['id'];
                 $str="SELECT * FROM 活動 WHERE 活動ID = $id";
+                $str2 = "SELECT 瀏覽數 FROM 活動 WHERE 活動ID = $id";
                 $list = mysql_query($str);
                 $va = mysql_fetch_row($list);
-                echo '<br><br><h1>'.$va[2].'</h1>';
+                $list2 = mysql_query($str2);
+                $va2 = mysql_fetch_row($list2);
+                $va2[0] = $va2[0] + 1;
+                $str2 = "UPDATE 活動 SET 瀏覽數= $va2[0] WHERE 活動ID = $id";
+                $list = mysql_query($str2);
+                echo '<article class="container" id="info"><br><br><br><br><br><br><br><h1>'.$va[2].'</h1></article>';
                 echo '<p>'.$va[1].'</p><br><br>';
                 echo '<p>日期：06/22</p>';
                 echo '<p>時間：12:30-13:10</p>';
@@ -137,8 +142,10 @@
 
     <div class="container-fluid">
         <div id="content3">
-            <h1>Q&A</h1>
-            <p>...</p>
+            <article class="container" id="QA">
+                <h1>Q&A</h1>
+                <p>...</p>
+            </article>
         </div>
     </div>
 
