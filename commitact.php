@@ -45,8 +45,6 @@
     <!-- Insert into database -->
     <div class="container">
         <div class="col-md-12 column">
-            <br></br>
-            <br></br>
             <?php
             include("mysql_connect.php");
 

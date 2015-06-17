@@ -45,10 +45,6 @@
      <div class="container">
         <div class="col-md-6 column">
             <form role="form" method="POST" action="commitlog.php" Enctype="multipart/form-data">
-                <br>
-                <br>
-                <br>
-                <br>
                 <h3>
                 登入
                 </h3>
@@ -67,8 +63,6 @@
                     $_SESSION['back'] = "index.php";
                 ?>
                 <button type="submit" class="btn btn-default">送出</button>
-                <br>
-                <br>
             </form>
         </div>
     </div>

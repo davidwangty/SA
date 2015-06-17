@@ -45,10 +45,6 @@
             echo '<div class="container">
                 <div class="col-md-6 column">
                     <form role="form" method="POST" action="commitact.php" Enctype="multipart/form-data">
-                        <br>
-                        <br>
-                        <br>
-                        <br>
                         <h3>
                         辦活動
                         </h3>
@@ -71,24 +67,15 @@
                             <label for="exampleInputlength">活動圖片</label><input type="file" name="image">
                         </div>
                         <button type="submit" class="btn btn-default">送出</button>
-                        <br>
-                        <br>
-                        <br>
                     </form>
                 </div>
             </div>';
         }else{
             echo '<div class="container">
                     <div class="col-md-6 column">
-                        <br>
-                        <br>
-                        <br>
-                        <br>
                         <h3>
                         請先登入
                         </h3>
-                        <br>
-                        <br>
                     </div>
                   </div>';
             $_SESSION['back'] = "create.php";

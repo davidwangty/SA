@@ -44,10 +44,7 @@
 
     <!-- Insert into database -->
     <div class="container">
-        <div class="col-md-12 column">
-            <br></br>
-            <br></br>
-            <br></br>   
+        <div class="col-md-12 column"> 
             <?php
             include("mysql_connect.php");
 
@@ -71,7 +68,7 @@
                     }
                     else
                     {
-                        echo '帳號創建失敗!...等待跳轉<br>';
+                        echo '<h3>帳號創建失敗!...等待跳轉</h3><br>';
                         echo '<meta http-equiv=REFRESH CONTENT=1;url=register.php>';   
                     }
                 }elseif($select == 2){
@@ -85,7 +82,7 @@
                     }
                     else
                     {
-                        echo '帳號創建失敗!...等待跳轉<br>';
+                        echo '<h3>帳號創建失敗!...等待跳轉</h3>';
                         echo '<meta http-equiv=REFRESH CONTENT=1;url=register.php>';   
                     }
                 }
@@ -101,7 +98,6 @@
                 echo '<meta http-equiv=REFRESH CONTENT=1;url=register.php>';   
             }
             ?>
-            <br>
         </div>
     </div>
 

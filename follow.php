@@ -40,21 +40,27 @@
     <?php
         include 'header.php';
     ?>
-
-
-    <!-- Insert into database -->
-     <div class="container">
+    
+    <div class="container">
         <div class="col-md-6 column">
-            <br></br>
-            <br></br>
-            <?php
-            $name = @$_POST['name'];
-            echo "$name 已報名參加此活動";
-            
+            <?php 
+                include("mysql_connect.php");
+                if(@$_SESSION['username2'] != null){
+                    $sql = "insert into 追蹤 (username, 活動ID) values ('".@$_SESSION['username2']."',". @$_GET['id'] . ")";  
+                    if(mysql_query($sql)){
+                        echo '<h3>追蹤成功!!</h3>';
+                    }
+                    else
+                    {
+                        echo '<h3>你已經追蹤過此活動了哦...</h3><br>';
+                    }
+                    echo '<meta http-equiv=REFRESH CONTENT=1;url=show.php?id='.@$_GET['id'].'>'; 
+                }else{
+                    echo '<h3>請先登入</h3>';
+                    $_SESSION['back'] = 'show.php?id='.@$_GET['id'];
+                    echo '<meta http-equiv=REFRESH CONTENT=1;url=login.php>';   
+                }
             ?>
-
-            <br>
-            <a href="index.php" class="btn" type="button">回首頁</a>
         </div>
     </div>
 
