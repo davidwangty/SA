@@ -45,7 +45,7 @@
             include("mysql_connect.php");
             $search = @$_POST['search'];
 
-            $sql = 'SELECT A.活動ID, A.使用者名稱, A.活動名稱, A.活動日期, A.圖片名稱 FROM 活動 AS A, 參加 AS B WHERE  A.活動ID = B.活動ID AND username = "'.@$_SESSION['username'].'"';
+            $sql = 'SELECT A.活動ID, A.使用者名稱, A.活動名稱, A.活動日期, A.圖片名稱 FROM 活動 AS A, 參加 AS B WHERE  A.活動ID = B.活動ID AND username = "'.@$_SESSION['username2'].'"';
             $list = mysql_query($sql);
             echo '<section id="portfolio">
         <div class="container">

@@ -95,22 +95,27 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    <li><a href="#top" style="color:darkblue">TOP</a></li>
                     <li><a href="#info" style="color:darkblue">活動資訊</a></li>
                     <li><a href="#QA" style="color:darkblue">Q&A </a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <?php
+
+
+                <?php
+                    if(@$_SESSION['username2'] != null){
+                        echo '<ul class="nav navbar-nav navbar-right">';
                         $id = @$_GET['id'];
                         echo '<li><a href = "add.php?id='.$id.'" style="color:darkblue">追蹤</a></li>';
-                        echo '<li><a href = "add.php?id='.$id.'" style="color:darkblue">參加</a></li>';
-                    ?>
-                </ul>
+                        echo '<li><a href = "add.php?id='.$id.'" style="color:darkblue">參加</a></li></ul>';
+                    }
+                ?>
+
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
         <!-- /.container-fluid -->
     </nav>
 
-    <div class="container-fluid">
+    <div class="container-fluid" id="top">
             <?php
                 include("mysql_connect.php");
                 $id = @$_GET['id'];
@@ -123,28 +128,31 @@
                 $va2[0] = $va2[0] + 1;
                 $str2 = "UPDATE 活動 SET 瀏覽數= $va2[0] WHERE 活動ID = $id";
                 $list = mysql_query($str2);
-                if($va[5] == ""){
-                    $va[5] = "未命名.png";
+                if($va[7] == ""){
+                    $va[7] = "未命名.png";
                 }
                 echo '<div id="sidebar2">
-                          <br><br><br><br><br><br><br><p align="center"><img src="img/upload/'.$va[5].'" width="300"></p><br><br>
+                          <br><br><br><br><br><br><br><p align="center"><img src="img/upload/'.$va[7].'" width="300"></p><br><br>
                       </div>';
                 echo '<div id="content2">';
                 echo '<article class="container" id="info"><br><br><br><br><br><br><br><h1>'.$va[2].'</h1></article>';
-                echo '<p>'.$va[1].'</p><br><br>';
-                echo '<p>日期：06/22</p>';
-                echo '<p>時間：12:30-13:10</p>';
-                echo '<p>地點：臺大二活蘇格拉底廳</p>';
+                echo '<p> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> '.$va[3].'</p>';
+                echo '<p> <span class="glyphicon glyphicon-time" aria-hidden="true"></span> '.$va[4].'</p>';
+                echo '<p> <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> '.$va[5].'</p>';
+                echo '<p> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 瀏覽人次: '.$va[8].'</p>';
+                echo '</div>';
             ?>
-        </div>
+                    
     </div>
 
     <div class="container-fluid" style="background:#ecf0f1">
         <div id="content3">
-            <h1>活動資訊</h1>
-            <?php
-                echo '<p>'.$va[4].'</p>';
-            ?>
+            <article class="container" id="info">
+                <h1>活動資訊</h1>
+                <?php
+                    echo '<p>'.$va[6].'</p>';
+                ?>
+            </article>
         </div>
     </div>
 

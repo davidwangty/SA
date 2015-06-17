@@ -51,9 +51,6 @@
     <?php
         include 'header.php';
     ?>
-    <br>
-    <br>
-    <br>
 
     <!-- Carousel
     ================================================== -->
@@ -127,18 +124,18 @@
                     $count = 0;
                     for($i=0; $i < 3; $i++){
                         $va = mysql_fetch_row($list);
-                        if($va[5] == ""){
-                            $va[5] = "未命名.png";
+                        if($va[7] == ""){
+                            $va[7] = "未命名.png";
                         }
                         echo '<div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
-                                <img src="img/upload/'.$va[5].'" alt="" height="300">
+                                <img src="img/upload/'.$va[7].'" alt="" height="300">
                                 <div class="caption" style="background:#eeeeee">';
                         echo '<a href="show.php?id='.$va[0].'""><h3>'.$va[2].'</h3></a>';
-                        echo '<p>'.$va[3].'</p>';
-                        echo '<p>12:30p.m.</p>';
-                        echo '<p>臺大二活蘇格拉底廳</p>';
-                        echo '<p>瀏覽人次: '.$va[6].'</p>';
+                        echo '<p> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> '.$va[3].'</p>';
+                        echo '<p> <span class="glyphicon glyphicon-time" aria-hidden="true"></span> '.$va[4].'</p>';
+                        echo '<p> <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> '.$va[5].'</p>';
+                        echo '<p> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 瀏覽人次: '.$va[8].'</p>';
                         echo '</div>
                             </div>
                         </div>';
