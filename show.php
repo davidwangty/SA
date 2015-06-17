@@ -52,10 +52,6 @@
     ?>
 
     <div class="container-fluid">
-        <div id="sidebar2">
-            <br><br><br><br><br><br><br><p align="center"><img src="img/1.jpg" width="300"></p><br><br>
-        </div>
-        <div id="content2">
             <?php
                 include("mysql_connect.php");
                 $id = @$_GET['id'];
@@ -68,12 +64,18 @@
                 $va2[0] = $va2[0] + 1;
                 $str2 = "UPDATE 活動 SET 瀏覽數= $va2[0] WHERE 活動ID = $id";
                 $list = mysql_query($str2);
+                if($va[5] == ""){
+                    $va[5] = "未命名.png";
+                }
+                echo '<div id="sidebar2">
+                          <br><br><br><br><br><br><br><p align="center"><img src="img/upload/'.$va[5].'" width="300"></p><br><br>
+                      </div>';
+                echo '<div id="content2">';
                 echo '<article class="container" id="info"><br><br><br><br><br><br><br><h1>'.$va[2].'</h1></article>';
                 echo '<p>'.$va[1].'</p><br><br>';
                 echo '<p>日期：06/22</p>';
                 echo '<p>時間：12:30-13:10</p>';
                 echo '<p>地點：臺大二活蘇格拉底廳</p>';
-                echo '<p>'.va[5].'</p>';
             ?>
         </div>
     </div>

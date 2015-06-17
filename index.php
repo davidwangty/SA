@@ -117,19 +117,22 @@
                     <hr class="star-primary">
                 </div>
             </div>
-            <div class="row" >
+            <div class="row">
                 <?php
                     include("mysql_connect.php");
                     $search = @$_POST['search'];
 
-                    $sql = "SELECT 活動ID, 使用者名稱, 活動名稱, 活動日期, 圖片, 圖片格式, 瀏覽數 FROM 活動  ORDER BY 瀏覽數 DESC";
+                    $sql = "SELECT * FROM 活動  ORDER BY 瀏覽數 DESC";
                     $list = mysql_query($sql);
-
-                    while($va = mysql_fetch_row($list))
-                    {
+                    $count = 0;
+                    for($i=0; $i < 3; $i++){
+                        $va = mysql_fetch_row($list);
+                        if($va[5] == ""){
+                            $va[5] = "未命名.png";
+                        }
                         echo '<div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
-                                <img src="img/1.jpg" alt="">
+                                <img src="img/upload/'.$va[5].'" alt="" height="300">
                                 <div class="caption" style="background:#eeeeee">';
                         echo '<a href="show.php?id='.$va[0].'""><h3>'.$va[2].'</h3></a>';
                         echo '<p>'.$va[3].'</p>';

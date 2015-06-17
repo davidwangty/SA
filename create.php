@@ -40,7 +40,7 @@
     ?>
 
     <?php 
-        if(@$_SESSION['username'] != null){
+        if(@$_SESSION['username1'] != null){
             echo '<div class="container">
                 <div class="col-md-6 column">
                     <form role="form" method="POST" action="commitact.php" Enctype="multipart/form-data">

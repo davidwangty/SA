@@ -50,21 +50,18 @@
             <?php
             include("mysql_connect.php");
 
-            $name1 = @$_SESSION['username'];
+            $name1 = @$_SESSION['username1'];
             $name2 = @$_POST['name2'];
             $date = @$_POST['date'];
             $info = @$_POST['info'];
             $fileContents = "";
             $filetype = "";
-            if (@$_POST['image'] != null){
+            if (@$_FILES['image']['size'] > 0){
                 $filename = @$_FILES['image']['name'];
                 $tmpname = @$_FILES['image']['tmp_name'];
                 $filetype = @$_FILES['image']['type'];
                 $filesize = @$_FILES['image']['size'];
-                $file = fopen($tmpname, "rb");
-                $fileContents = fread($file, filesize($tmpname));
-                fclose($file);
-                $fileContents = base64_encode($fileContents);
+                move_uploaded_file($_FILES["image"]["tmp_name"],"img/upload/".$_FILES["image"]["name"]);
             }
             
                     
@@ -77,7 +74,7 @@
                     $list = mysql_query($str);
                     $n = mysql_num_rows($list);
                     $n = $n + 1;
-                    $sql = "insert into 活動 (活動ID, 使用者名稱, 活動名稱, 活動日期, 活動資訊, 圖片, 圖片格式) values ('$n', '$name1', '$name2', '$date', '$info', '".$fileContents."','". $filetype . "')";
+                    $sql = "insert into 活動 (活動ID, 使用者名稱, 活動名稱, 活動日期, 活動資訊, 圖片名稱) values ('$n', '$name1', '$name2', '$date', '$info', '".$filename. "')";
                     if(mysql_query($sql))
                     {
                             echo '<h3>活動創辦成功!!</h3>';

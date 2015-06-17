@@ -45,7 +45,7 @@
             include("mysql_connect.php");
             $search = @$_POST['search'];
 
-            $sql = "SELECT 活動ID, 使用者名稱, 活動名稱, 活動日期, 圖片, 圖片格式, 瀏覽數 FROM 活動 WHERE (活動ID = '%$search%' OR 使用者名稱 LIKE '%$search%' OR 活動名稱 LIKE '%$search%') ORDER BY 活動日期";
+            $sql = "SELECT * FROM 活動 WHERE (活動ID = '%$search%' OR 使用者名稱 LIKE '%$search%' OR 活動名稱 LIKE '%$search%') ORDER BY 活動日期";
             $list = mysql_query($sql);
             echo '<section id="portfolio">
         <div class="container">
@@ -58,9 +58,12 @@
             <div class="row">';
             while($va = mysql_fetch_row($list))
             {
+                if($va[5] == ""){
+                    $va[5] = "未命名.png";
+                }
                 echo '<div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
-                        <img src="img/1.jpg" alt="">
+                        <img src="img/upload/'.$va[5].'" alt="" width="300">
                         <div class="caption" style="background:#eeeeee">';
                 echo '<a href="show.php?id='.$va[0].'""><h3>'.$va[2].'</h3></a>';
                 echo '<p>'.$va[3].'</p>';

@@ -56,12 +56,12 @@
             $pw2 = @$_POST['pw2'];
             $nickname = @$_POST['nickname'];
             $email = @$_POST['email'];
-            $select = @$_POST['select'];           
+            $select = @$_POST['select'];
 
             if($id != null && $pw != null && $pw == $pw2)
             {
                 if($select == 1){
-                    //新增參加者帳號
+                    //新增主辦者帳號
                     $sql = "insert into account_man (username, password, nickname, email) values ('$id', '$pw', '$nickname', 'email')";
                     if(mysql_query($sql))
                     {

@@ -45,7 +45,7 @@
             include("mysql_connect.php");
             $search = @$_POST['search'];
 
-            $sql = 'SELECT A.活動ID, A.使用者名稱, A.活動名稱, A.活動日期 FROM 活動 AS A, 參加 AS B WHERE  A.活動ID = B.活動ID AND username = "'.@$_SESSION['username'].'"';
+            $sql = 'SELECT A.活動ID, A.使用者名稱, A.活動名稱, A.活動日期, A.圖片名稱 FROM 活動 AS A, 參加 AS B WHERE  A.活動ID = B.活動ID AND username = "'.@$_SESSION['username'].'"';
             $list = mysql_query($sql);
             echo '<section id="portfolio">
         <div class="container">
@@ -57,20 +57,24 @@
             </div>
             <div class="row">';
             if ($list != null) {
-            while($va = mysql_fetch_row($list))
-            {
-                echo '<div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <img src="img/1.jpg" alt="">
-                        <div class="caption" style="background:#eeeeee">';
-                echo '<a href="show.php?id='.$va[0].'""><h3>'.$va[2].'</h3></a>';
-                echo '<p>'.$va[3].'</p>';
-                echo '<p>12:30p.m.</p>';
-                echo '<p>臺大二活蘇格拉底廳</p>';
-                echo '</div>
-                    </div>
-                </div>';
-            }}else{
+                while($va = mysql_fetch_row($list))
+                {
+                    if($va[4] == ""){
+                        $va[4] = "未命名.png";
+                    }
+                    echo '<div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img src="img/upload/'.$va[4].'" alt="" width="300">
+                            <div class="caption" style="background:#eeeeee">';
+                    echo '<a href="show.php?id='.$va[0].'""><h3>'.$va[2].'</h3></a>';
+                    echo '<p>'.$va[3].'</p>';
+                    echo '<p>12:30p.m.</p>';
+                    echo '<p>臺大二活蘇格拉底廳</p>';
+                    echo '</div>
+                        </div>
+                    </div>';
+                }
+            }else{
                 echo "<h3>沒有活動</h3>";
                 echo $sql;
             }
