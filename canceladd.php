@@ -46,13 +46,13 @@
             <?php 
                 include("mysql_connect.php");
                 if(@$_SESSION['username2'] != null){
-                    $sql = "insert into 參加 (username, 活動ID) values ('".@$_SESSION['username2']."',". @$_GET['id'] . ")";  
+                    $sql = 'DELETE FROM 參加 WHERE username = '.@$_SESSION['username2'].' AND 活動ID = '.@$_GET['id'];  
                     if(mysql_query($sql)){
-                        echo '<h3>參加成功!!</h3>';
+                        echo '<h3>取消參加!!</h3>';
                     }
                     else
                     {
-                        echo '<h3>你已經參加過此活動了哦...</h3><br>';
+                        echo '<h3>取消失敗...</h3><br>';
                     }
                     echo '<meta http-equiv=REFRESH CONTENT=1;url=show.php?id='.@$_GET['id'].'>'; 
                 }else{

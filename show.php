@@ -101,9 +101,27 @@
                 <?php
                     if(@$_SESSION['username2'] != null){
                         echo '<ul class="nav navbar-nav navbar-right">';
+                        include("mysql_connect.php");
                         $id = @$_GET['id'];
-                        echo '<li><a href = "add.php?id='.$id.'" style="color:darkblue">追蹤</a></li>';
-                        echo '<li><a href = "add.php?id='.$id.'" style="color:darkblue">參加</a></li></ul>';
+                        $str = 'SELECT * FROM 追蹤 WHERE 活動ID = '.$id.' AND username = '.@$_SESSION['username2'];
+                        $list = mysql_query($str);
+                        $nums=mysql_num_rows($list);
+                        if($nums > 0){
+                            echo '<li><a href = "cancelfollow.php?id='.$id.'" style="color:red">取消追蹤</a></li>';
+                        }else{
+                            echo '<li><a href = "follow.php?id='.$id.'" style="color:darkblue">追蹤</a></li>';
+                        }
+                        $str = 'SELECT * FROM 參加 WHERE 活動ID = '.$id.' AND username = '.@$_SESSION['username2'];
+                        $list = mysql_query($str);
+                        
+                        $nums=mysql_num_rows($list);
+                        if($nums > 0){
+                            echo '<li><a href = "canceladd.php?id='.$id.'" style="color:red">取消參加</a></li></ul>';
+                        }else{
+                            echo '<li><a href = "add.php?id='.$id.'" style="color:darkblue">參加</a></li></ul>';
+                        }
+                    }elseif(@$_SESSION['username1'] != null){
+
                     }
                 ?>
             </div><!-- /.navbar-collapse -->
@@ -113,8 +131,6 @@
 
     <div class="container-fluid">
             <?php
-                include("mysql_connect.php");
-                $id = @$_GET['id'];
                 $str="SELECT * FROM 活動 WHERE 活動ID = $id";
                 $str2 = "SELECT 瀏覽數 FROM 活動 WHERE 活動ID = $id";
                 $list = mysql_query($str);
