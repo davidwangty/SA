@@ -43,10 +43,6 @@
     
     <div class="container">
         <div class="col-md-6 column">
-            <br>
-            <br>
-            <br>
-            <br>
             <?php 
                 include("mysql_connect.php");
                 if(@$_SESSION['username2'] != null){
@@ -56,9 +52,9 @@
                     }
                     else
                     {
-                        echo '<h3>參加失敗!</h3><br>';
+                        echo '<h3>你已經參加過此活動了哦...</h3><br>';
                     }
-                    // echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>'; 
+                    echo '<meta http-equiv=REFRESH CONTENT=1;url=show.php?id='.@$_GET['id'].'>'; 
                 }else{
                     echo '<h3>請先登入</h3>';
                     $_SESSION['back'] = "add.php";

@@ -45,15 +45,11 @@
     <!-- Insert into database -->
      <div class="container">
         <div class="col-md-6 column">
-            <br>
-            <br>
-            <br>
-            <br>
             <?php
                 //將session清空
                 unset($_SESSION['username1']);
                 unset($_SESSION['username2']);
-                echo '<h3>登出中......<h3><br><br>';
+                echo '<h3>登出中......<h3>';
                 echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
             ?>
         </div>

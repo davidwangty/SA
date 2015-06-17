@@ -75,10 +75,6 @@
      <div class="container">
         <div class="col-md-6 column">
             <form role="form" method="POST" action="commitreg.php" name = "reg">
-                <br>
-                <br>
-                <br>
-                <br>
                 <h3>
                 註冊
                 </h3>
@@ -104,8 +100,6 @@
                 </div>
                 <button type="submit" class="btn btn-default">送出</button>
                 <!-- <input type="button"  value = "送出" onClick="check()"> -->
-                <br>
-                <br>
             </form>
         </div>
     </div>

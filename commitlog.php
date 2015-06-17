@@ -45,10 +45,6 @@
     <!-- Insert into database -->
      <div class="container">
         <div class="col-md-6 column">
-            <br>
-            <br>
-            <br>
-            <br>
             <?php
                 include("mysql_connect.php");
                 $id = $_POST['id'];
@@ -61,12 +57,12 @@
                     if($id != null && $pw != null && $row[0] == $id && $row[1] == $pw){
                         //將帳號寫入session，方便驗證使用者身份
                         $_SESSION['username1'] = $id;
-                        echo '<h3>登入成功!</h3><br><br>';
+                        echo '<h3>登入成功!</h3>';
                         echo '<meta http-equiv=REFRESH CONTENT=1;url='.$_SESSION['back'].'>';   
                     }
                     else
                     {
-                        echo '<h3>登入失敗!</h3><br><br>';
+                        echo '<h3>登入失敗!</h3>';
                         echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';   
                     } 
                 }elseif($select == 2){
@@ -76,16 +72,16 @@
                     if($id != null && $pw != null && $row[0] == $id && $row[1] == $pw){
                         //將帳號寫入session，方便驗證使用者身份
                         $_SESSION['username2'] = $id;
-                        echo '<h3>登入成功!</h3><br><br>';
+                        echo '<h3>登入成功!</h3>';
                         echo '<meta http-equiv=REFRESH CONTENT=1;url='.$_SESSION['back'].'>';   
                     }
                     else
                     {
-                        echo '<h3>登入失敗!</h3><br><br>';
+                        echo '<h3>登入失敗!</h3>';
                         echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';   
                     } 
                 }else{
-                    echo "<h3>你沒有選你要哪種帳號!!!</h3><br><br>";
+                    echo "<h3>你沒有選你要哪種帳號!!!</h3>";
                     echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>'; 
                 }
             ?>
