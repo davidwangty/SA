@@ -49,8 +49,8 @@
             <br>
             <?php 
                 include("mysql_connect.php");
-                if(@$_SESSION['username'] != null){
-                    $sql = "insert into 參加 (username, 活動ID) values ('".@$_SESSION['username']."',". @$_GET['id'] . ")";  
+                if(@$_SESSION['username2'] != null){
+                    $sql = "insert into 參加 (username, 活動ID) values ('".@$_SESSION['username2']."',". @$_GET['id'] . ")";  
                     if(mysql_query($sql)){
                         echo '<h3>參加成功!!</h3>';
                     }

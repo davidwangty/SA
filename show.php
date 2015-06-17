@@ -98,13 +98,14 @@
                     <li><a href="#info" style="color:darkblue">活動資訊</a></li>
                     <li><a href="#QA" style="color:darkblue">Q&A </a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <?php
+                <?php
+                    if(@$_SESSION['username2'] != null){
+                        echo '<ul class="nav navbar-nav navbar-right">';
                         $id = @$_GET['id'];
                         echo '<li><a href = "add.php?id='.$id.'" style="color:darkblue">追蹤</a></li>';
-                        echo '<li><a href = "add.php?id='.$id.'" style="color:darkblue">參加</a></li>';
-                    ?>
-                </ul>
+                        echo '<li><a href = "add.php?id='.$id.'" style="color:darkblue">參加</a></li></ul>';
+                    }
+                ?>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
         <!-- /.container-fluid -->
