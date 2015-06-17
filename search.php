@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +41,7 @@
             <div class="navbar-header page-scroll">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                      <a class="navbar-brand" href="index.html">
+                      <a class="navbar-brand" href="index.php">
                         <!-- <img alt="Brand" src="..."> -->
                         Group 6
                       </a>
@@ -61,12 +62,14 @@
                     <li>
                         <a href="create.php">辦活動</a>
                     </li>
-                    <li>
-                        <a href="index.html">註冊</a>
-                    </li>
-                    <li>
-                        <a href="index.html">登入</a>
-                    </li>
+                    <?php 
+                        if(@$_SESSION['username'] != null){
+                            echo '<li><a href = "manage.php">'.@$_SESSION['username'].'</a><li><a href = "logout.php">登出</a>';
+                        }
+                        else{
+                            echo '<li><a href="register.php">註冊</a></li><li><a href="login.php">登入</a></li>';
+                        }
+                    ?>
                 </ul>
             </div>
 
@@ -79,56 +82,42 @@
 
     <div class="container">
         <div class="col-md-6 column">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <h3>
-            Result:
-            </h3>
             <?php
-            include("mysql_connect.inc.php");
+            include("mysql_connect.php");
             $search = @$_POST['search'];
 
-            $sql = "SELECT 活動ID, 使用者名稱, 活動名稱, 活動日期 FROM 活動 WHERE (活動ID = '%$search%' OR 使用者名稱 LIKE '%$search%' OR 活動名稱 LIKE '%$search%') ORDER BY 活動日期";
+            $sql = "SELECT 活動ID, 使用者名稱, 活動名稱, 活動日期, 圖片, 圖片格式, 瀏覽數 FROM 活動 WHERE (活動ID = '%$search%' OR 使用者名稱 LIKE '%$search%' OR 活動名稱 LIKE '%$search%') ORDER BY 活動日期";
             $list = mysql_query($sql);
+            echo '<section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>搜尋結果</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">';
+            while($va = mysql_fetch_row($list))
+            {
+                echo '<div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="img/1.jpg" alt="">
+                        <div class="caption" style="background:#eeeeee">';
+                echo '<a href="show.php?id='.$va[0].'""><h3>'.$va[2].'</h3></a>';
+                echo '<p>'.$va[3].'</p>';
+                echo '<p>12:30p.m.</p>';
+                echo '<p>臺大二活蘇格拉底廳</p>';
+                echo '<p>瀏覽人次: '.$va[6].'</p>';
+                echo '</div>
+                    </div>
+                </div>';
+            }
+            echo '</div>
+        </div>
+    </section>';
             ?>
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>
-                            活動ID
-                        </th>
-                        <th>
-                            使用者名稱
-                        </th>
-                        <th>
-                            活動名稱
-                        </th>
-                        <th>
-                            活動日期
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    while($va = mysql_fetch_row($list))
-                    {
-                        echo    '<tr><td>';
-                        echo    $va[0];
-                        echo    '</td><td>';
-                        echo    $va[1];
-                        echo    '</td><td>';
-                        echo    '<a href="show.php?id='.$va[0].'"">'.$va[2].'</a>';
-                        echo    '</td><td>';
-                        echo    $va[3];
-                        echo    '</td><td>';
-                    }
-                    
-                    ?>
-                </tbody>
-            </table>
+
+
         </div>
     </div>
 

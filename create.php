@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +41,7 @@
             <div class="navbar-header page-scroll">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                      <a class="navbar-brand" href="index.html">
+                      <a class="navbar-brand" href="index.php">
                         <!-- <img alt="Brand" src="..."> -->
                         Group 6
                       </a>
@@ -61,12 +62,14 @@
                     <li>
                         <a href="create.php">辦活動</a>
                     </li>
-                    <li>
-                        <a href="index.html">註冊</a>
-                    </li>
-                    <li>
-                        <a href="index.html">登入</a>
-                    </li>
+                    <?php 
+                        if(@$_SESSION['username'] != null){
+                            echo '<li><a href = "manage.php">'.@$_SESSION['username'].'</a><li><a href = "logout.php">登出</a>';
+                        }
+                        else{
+                            echo '<li><a href="register.php">註冊</a></li><li><a href="login.php">登入</a></li>';
+                        }
+                    ?>
                 </ul>
             </div>
 
@@ -81,39 +84,57 @@
         <li role="presentation"><a href="#">Messages</a></li>
     </ul>
 
+    <?php 
+        if(@$_SESSION['username'] != null){
+            echo '<div class="container">
+                <div class="col-md-6 column">
+                    <form role="form" method="POST" action="commitact.php" Enctype="multipart/form-data">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <h3>
+                        辦活動~~~!
+                        </h3>
+                        <div class="form-group">
+                            <label for="exampleInputlength">活動名稱</label><input type="text" class="form-control" name="name2">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputpublish">活動日期</label><input type="date" class="form-control" name="date">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputlength">活動資訊</label><textarea nrow="5" class="form-control" name="info"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputlength">活動圖片</label><input type="file" name="image">
+                        </div>
+                        <button type="submit" class="btn btn-default">送出</button>
+                        <br>
+                        <br>
+                        <br>
+                    </form>
+                </div>
+            </div>';
+        }else{
+            echo '<div class="container">
+                    <div class="col-md-6 column">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <h3>
+                        請先登入
+                        </h3>
+                        <br>
+                        <br>
+                    </div>
+                  </div>';
+            $_SESSION['back'] = "create.php";
+            echo '<meta http-equiv=REFRESH CONTENT=1;url=login.php>';   
+        }
+    ?>
 
-    <div class="container">
-        <div class="col-md-6 column">
-            <form role="form" method="POST" action="commitact.php" Enctype="multipart/form-data">
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <h3>
-                辦活動~~~!
-                </h3>
-                <div class="form-group">
-                    <label for="exampleInputlength">使用者名稱</label><input type="text" class="form-control" name="name1">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputlength">活動名稱</label><input type="text" class="form-control" name="name2">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputpublish">活動日期</label><input type="date" class="form-control" name="date">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputlength">活動資訊</label><input type="text" class="form-control" name="info">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputlength">活動圖片</label><input type="file" name="image">
-                </div>
-                <button type="submit" class="btn btn-default">送出</button>
-                <br>
-                <br>
-            </form>
-        </div>
-    </div>
+
 
     <!-- Footer -->
     <footer class="text-center">

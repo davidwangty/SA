@@ -86,55 +86,41 @@
         <div class="col-md-12 column">
             <br></br>
             <br></br>
+            <br></br>   
             <?php
             include("mysql_connect.php");
 
-            $name1 = @$_SESSION['username'];
-            $name2 = @$_POST['name2'];
-            $date = @$_POST['date'];
-            $info = @$_POST['info'];
-            $fileContents = "";
-            $filetype = "";
-            if (@$_POST['image'] != null){
-                $filename = @$_FILES['image']['name'];
-                $tmpname = @$_FILES['image']['tmp_name'];
-                $filetype = @$_FILES['image']['type'];
-                $filesize = @$_FILES['image']['size'];
-                $file = fopen($tmpname, "rb");
-                $fileContents = fread($file, filesize($tmpname));
-                fclose($file);
-                $fileContents = base64_encode($fileContents);
-            }
-            
-                    
-            
+            $id = @$_POST['id'];
+            $pw = @$_POST['pw'];  
+            $pw2 = @$_POST['pw2'];                           
 
-            if($name1 != null && $name2 != null && $date != null)
+            if($id != null && $pw != null && $pw == $pw2)
             {
-                    //新增資料進資料庫語法
-                    $str="SELECT 活動ID FROM 活動";
-                    $list = mysql_query($str);
-                    $n = mysql_num_rows($list);
-                    $n = $n + 1;
-                    $sql = "insert into 活動 (活動ID, 使用者名稱, 活動名稱, 活動日期, 活動資訊, 圖片, 圖片格式) values ('$n', '$name1', '$name2', '$date', '$info', '".$fileContents."','". $filetype . "')";
-                    if(mysql_query($sql))
-                    {
-                            echo '<h3>活動創辦成功!!</h3>';
-                    }
-                    else
-                    {
-                            echo '活動創辦失敗!<br>';
-                    }
+                //新增資料進資料庫語法
+                $sql = "insert into account (username, password) values ('$id', '$pw')";
+                if(mysql_query($sql))
+                {
+                    echo '<h3>帳號創建成功!!...等待跳轉</h3>';
+                    $_SESSION['username'] = $id;
+                    echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';   
+                }
+                else
+                {
+                    echo '帳號創建失敗!...等待跳轉<br>';
+                    echo '<meta http-equiv=REFRESH CONTENT=1;url=register.php>';   
+                }
+            }
+            elseif($pw != $pw2){
+                echo '<h3>密碼不一致...等待跳轉<h3>';
+                echo '<meta http-equiv=REFRESH CONTENT=1;url=register.php>';   
             }
             else
             {
-                    echo '<h3>活動名稱和日期不可為空<h3>';
+                echo '<h3>帳號密碼不可為空...等待跳轉<h3>';
+                echo '<meta http-equiv=REFRESH CONTENT=1;url=register.php>';   
             }
             ?>
-
             <br>
-            <a href="index.php" class="btn" type="button">回首頁</a>
-            <a href="create.php" class="btn" type="button">再辦活動</a>
         </div>
     </div>
 

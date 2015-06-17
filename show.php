@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +29,18 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type='text/css'>
+    #sidebar2 {width:40%;
+               float:left;
+              }
+    #content2 {width:60%;
+               float:left;
+              }
+    #content3 {width:90%;
+               float:right;
+              }
+
+    </style>
 
 </head>
 
@@ -40,7 +53,7 @@
             <div class="navbar-header page-scroll">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                      <a class="navbar-brand" href="index.html">
+                      <a class="navbar-brand" href="index.php">
                         <!-- <img alt="Brand" src="..."> -->
                         Group 6
                       </a>
@@ -61,48 +74,82 @@
                     <li>
                         <a href="create.php">辦活動</a>
                     </li>
-                    <li>
-                        <a href="index.html">註冊</a>
-                    </li>
-                    <li>
-                        <a href="index.html">登入</a>
-                    </li>
+                    <?php 
+                        if(@$_SESSION['username'] != null){
+                            echo '<li><a href = "manage.php">'.@$_SESSION['username'].'</a><li><a href = "logout.php">登出</a>';
+                        }
+                        else{
+                            echo '<li><a href="register.php">註冊</a></li><li><a href="login.php">登入</a></li>';
+                        }
+                    ?>
                 </ul>
             </div>
-
             <!-- /.navbar-collapse -->
         </div>
+        <div class="container-fluid" style="background:#eeeeee">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#info" style="color:darkblue">活動資訊</a></li>
+                    <li><a href="#QA" style="color:darkblue">Q&A </a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <?php
+                        $id = @$_GET['id'];
+                        echo '<li><a href = "add.php?id='.$id.'" style="color:darkblue">追蹤</a></li>';
+                        echo '<li><a href = "add.php?id='.$id.'" style="color:darkblue">參加</a></li>';
+                    ?>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
         <!-- /.container-fluid -->
     </nav>
 
-
-
-    <div class="container">
-        <div class="col-md-6 column">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+    <div class="container-fluid">
+        <div id="sidebar2">
+            <br><br><br><br><br><br><br><p align="center"><img src="img/1.jpg" width="300"></p><br><br>
+        </div>
+        <div id="content2">
             <?php
                 include("mysql_connect.php");
                 $id = @$_GET['id'];
                 $str="SELECT * FROM 活動 WHERE 活動ID = $id";
+                $str2 = "SELECT 瀏覽數 FROM 活動 WHERE 活動ID = $id";
                 $list = mysql_query($str);
                 $va = mysql_fetch_row($list);
-                echo "<h3>".$va[2]."</h3>";
-                echo $va[3];
-                echo "<br>";
-                echo $va[4];
-                echo "<br>";
+                $list2 = mysql_query($str2);
+                $va2 = mysql_fetch_row($list2);
+                $va2[0] = $va2[0] + 1;
+                $str2 = "UPDATE 活動 SET 瀏覽數= $va2[0] WHERE 活動ID = $id";
+                $list = mysql_query($str2);
+                echo '<article class="container" id="info"><br><br><br><br><br><br><br><h1>'.$va[2].'</h1></article>';
+                echo '<p>'.$va[1].'</p><br><br>';
+                echo '<p>日期：06/22</p>';
+                echo '<p>時間：12:30-13:10</p>';
+                echo '<p>地點：臺大二活蘇格拉底廳</p>';
             ?>
-            <form role="form" method="POST" action="commitadd.php">
-                <button type="submit" class="btn btn-default">參加</button>
-            </form>
         </div>
     </div>
+
+    <div class="container-fluid" style="background:#ecf0f1">
+        <div id="content3">
+            <h1>活動資訊</h1>
+            <?php
+                echo '<p>'.$va[4].'</p>';
+            ?>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div id="content3">
+            <article class="container" id="QA">
+                <h1>Q&A</h1>
+                <p>...</p>
+            </article>
+        </div>
+    </div>
+
+    
 
     <!-- Footer -->
     <footer class="text-center">

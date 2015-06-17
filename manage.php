@@ -10,9 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-
-    <title>Event Management</title>
+    <title>Freelancer - Start Bootstrap Theme</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -81,63 +79,50 @@
     </nav>
 
 
-    <!-- Insert into database -->
+
     <div class="container">
-        <div class="col-md-12 column">
-            <br></br>
-            <br></br>
+        <div class="col-md-6 column">
             <?php
             include("mysql_connect.php");
+            $search = @$_POST['search'];
 
-            $name1 = @$_SESSION['username'];
-            $name2 = @$_POST['name2'];
-            $date = @$_POST['date'];
-            $info = @$_POST['info'];
-            $fileContents = "";
-            $filetype = "";
-            if (@$_POST['image'] != null){
-                $filename = @$_FILES['image']['name'];
-                $tmpname = @$_FILES['image']['tmp_name'];
-                $filetype = @$_FILES['image']['type'];
-                $filesize = @$_FILES['image']['size'];
-                $file = fopen($tmpname, "rb");
-                $fileContents = fread($file, filesize($tmpname));
-                fclose($file);
-                $fileContents = base64_encode($fileContents);
-            }
-            
-                    
-            
-
-            if($name1 != null && $name2 != null && $date != null)
+            $sql = 'SELECT A.活動ID, A.使用者名稱, A.活動名稱, A.活動日期 FROM 活動 AS A, 參加 AS B WHERE  A.活動ID = B.活動ID AND username = "'.@$_SESSION['username'].'"';
+            $list = mysql_query($sql);
+            echo '<section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>您參加的活動</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">';
+            if ($list != null) {
+            while($va = mysql_fetch_row($list))
             {
-                    //新增資料進資料庫語法
-                    $str="SELECT 活動ID FROM 活動";
-                    $list = mysql_query($str);
-                    $n = mysql_num_rows($list);
-                    $n = $n + 1;
-                    $sql = "insert into 活動 (活動ID, 使用者名稱, 活動名稱, 活動日期, 活動資訊, 圖片, 圖片格式) values ('$n', '$name1', '$name2', '$date', '$info', '".$fileContents."','". $filetype . "')";
-                    if(mysql_query($sql))
-                    {
-                            echo '<h3>活動創辦成功!!</h3>';
-                    }
-                    else
-                    {
-                            echo '活動創辦失敗!<br>';
-                    }
+                echo '<div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="img/1.jpg" alt="">
+                        <div class="caption" style="background:#eeeeee">';
+                echo '<a href="show.php?id='.$va[0].'""><h3>'.$va[2].'</h3></a>';
+                echo '<p>'.$va[3].'</p>';
+                echo '<p>12:30p.m.</p>';
+                echo '<p>臺大二活蘇格拉底廳</p>';
+                echo '</div>
+                    </div>
+                </div>';
+            }}else{
+                echo "<h3>沒有活動</h3>";
+                echo $sql;
             }
-            else
-            {
-                    echo '<h3>活動名稱和日期不可為空<h3>';
-            }
+            echo '</div>
+        </div>
+    </section>';
             ?>
 
-            <br>
-            <a href="index.php" class="btn" type="button">回首頁</a>
-            <a href="create.php" class="btn" type="button">再辦活動</a>
+
         </div>
     </div>
-
 
     <!-- Footer -->
     <footer class="text-center">

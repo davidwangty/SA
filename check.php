@@ -82,59 +82,31 @@
 
 
     <!-- Insert into database -->
-    <div class="container">
-        <div class="col-md-12 column">
-            <br></br>
-            <br></br>
-            <?php
-            include("mysql_connect.php");
-
-            $name1 = @$_SESSION['username'];
-            $name2 = @$_POST['name2'];
-            $date = @$_POST['date'];
-            $info = @$_POST['info'];
-            $fileContents = "";
-            $filetype = "";
-            if (@$_POST['image'] != null){
-                $filename = @$_FILES['image']['name'];
-                $tmpname = @$_FILES['image']['tmp_name'];
-                $filetype = @$_FILES['image']['type'];
-                $filesize = @$_FILES['image']['size'];
-                $file = fopen($tmpname, "rb");
-                $fileContents = fread($file, filesize($tmpname));
-                fclose($file);
-                $fileContents = base64_encode($fileContents);
-            }
-            
-                    
-            
-
-            if($name1 != null && $name2 != null && $date != null)
-            {
-                    //新增資料進資料庫語法
-                    $str="SELECT 活動ID FROM 活動";
-                    $list = mysql_query($str);
-                    $n = mysql_num_rows($list);
-                    $n = $n + 1;
-                    $sql = "insert into 活動 (活動ID, 使用者名稱, 活動名稱, 活動日期, 活動資訊, 圖片, 圖片格式) values ('$n', '$name1', '$name2', '$date', '$info', '".$fileContents."','". $filetype . "')";
-                    if(mysql_query($sql))
-                    {
-                            echo '<h3>活動創辦成功!!</h3>';
-                    }
-                    else
-                    {
-                            echo '活動創辦失敗!<br>';
-                    }
-            }
-            else
-            {
-                    echo '<h3>活動名稱和日期不可為空<h3>';
-            }
-            ?>
-
+     <div class="container">
+        <div class="col-md-6 column">
             <br>
-            <a href="index.php" class="btn" type="button">回首頁</a>
-            <a href="create.php" class="btn" type="button">再辦活動</a>
+            <br>
+            <br>
+            <br>
+            <?php
+                include("mysql_connect.php");
+                $id = $_POST['id'];
+                $pw = $_POST['pw'];
+                $sql = "SELECT * FROM account where username = '$id'";
+                $result = mysql_query($sql);
+                $row = mysql_fetch_row($result);
+                if($id != null && $pw != null && $row[0] == $id && $row[1] == $pw){
+                    //將帳號寫入session，方便驗證使用者身份
+                    $_SESSION['username'] = $id;
+                    echo '<h3>登入成功!</h3><br><br>';
+                    echo '<meta http-equiv=REFRESH CONTENT=1;url='.$_SESSION['back'].'>';   
+                }
+                else
+                {
+                    echo '<h3>登入失敗!</h3><br><br>';
+                    echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';   
+                } 
+            ?>
         </div>
     </div>
 

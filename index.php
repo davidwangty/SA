@@ -31,13 +31,24 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type='text/css'>
+    #sidebar2 {width:40%;
+               float:left;
+              }
+    #content2 {width:60%;
+               float:left;
+              }
+    #content3 {width:90%;
+               float:right;
+    }
+    </style>
 
 </head>
 
 <body id="page-top" class="index">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
@@ -79,65 +90,111 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
+    <br>
+    <br>
 
-
-    <!-- Insert into database -->
-    <div class="container">
-        <div class="col-md-12 column">
-            <br></br>
-            <br></br>
-            <?php
-            include("mysql_connect.php");
-
-            $name1 = @$_SESSION['username'];
-            $name2 = @$_POST['name2'];
-            $date = @$_POST['date'];
-            $info = @$_POST['info'];
-            $fileContents = "";
-            $filetype = "";
-            if (@$_POST['image'] != null){
-                $filename = @$_FILES['image']['name'];
-                $tmpname = @$_FILES['image']['tmp_name'];
-                $filetype = @$_FILES['image']['type'];
-                $filesize = @$_FILES['image']['size'];
-                $file = fopen($tmpname, "rb");
-                $fileContents = fread($file, filesize($tmpname));
-                fclose($file);
-                $fileContents = base64_encode($fileContents);
-            }
-            
-                    
-            
-
-            if($name1 != null && $name2 != null && $date != null)
-            {
-                    //新增資料進資料庫語法
-                    $str="SELECT 活動ID FROM 活動";
-                    $list = mysql_query($str);
-                    $n = mysql_num_rows($list);
-                    $n = $n + 1;
-                    $sql = "insert into 活動 (活動ID, 使用者名稱, 活動名稱, 活動日期, 活動資訊, 圖片, 圖片格式) values ('$n', '$name1', '$name2', '$date', '$info', '".$fileContents."','". $filetype . "')";
-                    if(mysql_query($sql))
-                    {
-                            echo '<h3>活動創辦成功!!</h3>';
-                    }
-                    else
-                    {
-                            echo '活動創辦失敗!<br>';
-                    }
-            }
-            else
-            {
-                    echo '<h3>活動名稱和日期不可為空<h3>';
-            }
-            ?>
-
-            <br>
-            <a href="index.php" class="btn" type="button">回首頁</a>
-            <a href="create.php" class="btn" type="button">再辦活動</a>
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+            <p align="middle">
+                <img alt="Scenary" src="img/1.jpg" width="500">
+            </p>
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1 class="style1">
+                        <span lang="zh-tw">
+                            <strong>
+                                <span>天天握手會</span>
+                            </strong>
+                        </span>
+                    </h1>
+                    <p><span lang="zh-tw"><span class="style2">即日起開放報名！</span></span></p>
+                </div>
+            </div>
         </div>
+        <div class="item">
+          <p align="middle">
+                <img alt="Scenary" src="img/2.jpg" width="500">
+          </p>
+          <div class="container">
+            <div class="carousel-caption">
+              <h1 class="style1">cute!cute!cute!</h1>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <p align="middle">
+                <img alt="Scenary" src="img/3.jpg" width="500">
+          </p>
+          <div class="container">
+            <div class="carousel-caption">
+              <h1><span class="style2">cute!cute!</span></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div>
+    <!-- /.carousel -->
 
+    <!-- Portfolio Grid Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>熱門活動</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row" >
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="img/1.jpg" alt="" height="100">
+                        <div class="caption" style="background:#eeeeee">
+                            <a href = "show.php?id=1"><h3>天天握手會—2015臺北首站開跑</h3></a>
+                            <p>2015.6.22</p>
+                            <p>12:30p.m.</p>
+                            <p>臺大二活蘇格拉底廳</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="img/1.jpg" alt="">
+                        <div class="caption" style="background:#eeeeee">
+                            <a href = "show.php?id=1"><h3>天天握手會—2015臺北首站開跑</h3></a>
+                            <p>2015.6.22</p>
+                            <p>12:30p.m.</p>
+                            <p>臺大二活蘇格拉底廳</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="img/1.jpg" alt="">
+                        <div class="caption" style="background:#eeeeee">
+                            <a href = "show.php?id=1"><h3>天天握手會—2015臺北首站開跑</h3></a>
+                            <p>2015.6.22</p>
+                            <p>12:30p.m.</p>
+                            <p>臺大二活蘇格拉底廳</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class = container>
+            <a href = "search.php?"><h4>看更多活動</h4></a>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="text-center">
