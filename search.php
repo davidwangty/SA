@@ -56,23 +56,28 @@
                 </div>
             </div>
             <div class="row">';
-            while($va = mysql_fetch_row($list))
-            {
-                if($va[5] == ""){
-                    $va[5] = "未命名.png";
+            $nums=mysql_num_rows($list);
+            if($nums > 0){
+                while($va = mysql_fetch_row($list))
+                {
+                    if($va[5] == ""){
+                        $va[5] = "未命名.png";
+                    }
+                    echo '<div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img src="img/upload/'.$va[5].'" alt="" width="300">
+                            <div class="caption" style="background:#eeeeee">';
+                    echo '<a href="show.php?id='.$va[0].'""><h3>'.$va[2].'</h3></a>';
+                    echo '<p>'.$va[3].'</p>';
+                    echo '<p>12:30p.m.</p>';
+                    echo '<p>臺大二活蘇格拉底廳</p>';
+                    echo '<p>瀏覽人次: '.$va[6].'</p>';
+                    echo '</div>
+                        </div>
+                    </div>';
                 }
-                echo '<div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <img src="img/upload/'.$va[5].'" alt="" width="300">
-                        <div class="caption" style="background:#eeeeee">';
-                echo '<a href="show.php?id='.$va[0].'""><h3>'.$va[2].'</h3></a>';
-                echo '<p>'.$va[3].'</p>';
-                echo '<p>12:30p.m.</p>';
-                echo '<p>臺大二活蘇格拉底廳</p>';
-                echo '<p>瀏覽人次: '.$va[6].'</p>';
-                echo '</div>
-                    </div>
-                </div>';
+            }else{
+                echo "<div class = text-center><h3>SOR..沒有符合的活動...</h3></div>";
             }
             echo '</div>
         </div>

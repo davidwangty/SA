@@ -6,9 +6,9 @@ $db_server = "localhost";
 //資料庫名稱
 $db_name = "event_man";
 //資料庫管理者帳號
-$db_user = "root";
+$db_user = "SAteam";
 //資料庫管理者密碼
-$db_passwd = "";
+$db_passwd = "sa";
 
 //對資料庫連線
 if(!@mysql_connect($db_server, $db_user, $db_passwd))

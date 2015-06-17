@@ -100,8 +100,8 @@
                 </ul>
                 <?php
                     if(@$_SESSION['username2'] != null){
-                        echo '<ul class="nav navbar-nav navbar-right">';
                         include("mysql_connect.php");
+                        echo '<ul class="nav navbar-nav navbar-right">';
                         $id = @$_GET['id'];
                         $str = 'SELECT * FROM 追蹤 WHERE 活動ID = '.$id.' AND username = '.@$_SESSION['username2'];
                         $list = mysql_query($str);
@@ -131,7 +131,9 @@
 
     <div class="container-fluid">
             <?php
-                $str="SELECT * FROM 活動 WHERE 活動ID = $id";
+                include("mysql_connect.php");
+                $id = @$_GET['id'];
+                $str = "SELECT * FROM 活動 WHERE 活動ID = $id";
                 $str2 = "SELECT 瀏覽數 FROM 活動 WHERE 活動ID = $id";
                 $list = mysql_query($str);
                 $va = mysql_fetch_row($list);
@@ -144,10 +146,10 @@
                     $va[5] = "未命名.png";
                 }
                 echo '<div id="sidebar2">
-                          <br><br><br><br><br><br><br><p align="center"><img src="img/upload/'.$va[5].'" width="300"></p><br><br>
+                          <br><br><br><br><p align="center"><img src="img/upload/'.$va[5].'" width="300"></p><br><br>
                       </div>';
                 echo '<div id="content2">';
-                echo '<article class="container" id="info"><br><br><br><br><br><br><br><h1>'.$va[2].'</h1></article>';
+                echo '<article class="container" id="info"><br><br><br><br><h1>'.$va[2].'</h1></article>';
                 echo '<p>'.$va[1].'</p><br><br>';
                 echo '<p>日期：06/22</p>';
                 echo '<p>時間：12:30-13:10</p>';

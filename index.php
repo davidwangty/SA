@@ -117,12 +117,15 @@
             <div class="row">
                 <?php
                     include("mysql_connect.php");
-                    $search = @$_POST['search'];
 
                     $sql = "SELECT * FROM 活動  ORDER BY 瀏覽數 DESC";
                     $list = mysql_query($sql);
+                    $nums=mysql_num_rows($list);
+                    if($nums > 3){
+                        $nums = 3;
+                    }
                     $count = 0;
-                    for($i=0; $i < 3; $i++){
+                    for($i=0; $i < $nums; $i++){
                         $va = mysql_fetch_row($list);
                         if($va[5] == ""){
                             $va[5] = "未命名.png";

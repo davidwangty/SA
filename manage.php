@@ -45,7 +45,8 @@
             include("mysql_connect.php");
             $search = @$_POST['search'];
 
-            $sql = 'SELECT A.活動ID, A.使用者名稱, A.活動名稱, A.活動日期, A.圖片名稱 FROM 活動 AS A, 參加 AS B WHERE  A.活動ID = B.活動ID AND username = "'.@$_SESSION['username2'].'"';
+            $sql = 'SELECT * FROM 活動 AS A, 參加 AS B WHERE  A.活動ID = B.活動ID AND username = "'.@$_SESSION['username2'].'"';
+            echo "$sql";
             $list = mysql_query($sql);
             echo '<section id="portfolio">
         <div class="container">
@@ -56,7 +57,8 @@
                 </div>
             </div>
             <div class="row">';
-            if ($list != null) {
+            $nums=mysql_num_rows($list);
+            if($nums > 0){
                 while($va = mysql_fetch_row($list))
                 {
                     if($va[4] == ""){
@@ -76,7 +78,6 @@
                 }
             }else{
                 echo "<h3>沒有活動</h3>";
-                echo $sql;
             }
             echo '</div>
         </div>
