@@ -135,6 +135,8 @@
 
     <div class="container-fluid" id="top">
             <?php
+                include("mysql_connect.php");
+                $id = @$_GET['id'];    
                 $str="SELECT * FROM 活動 WHERE 活動ID = $id";
                 $str2 = "SELECT 瀏覽數 FROM 活動 WHERE 活動ID = $id";
                 $list = mysql_query($str);
