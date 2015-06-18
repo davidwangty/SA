@@ -2,48 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-
-    <title>Event Management</title>
-
-    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/freelancer.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <style type='text/css'>
-    #sidebar2 {width:40%;
-               float:left;
-              }
-    #content2 {width:60%;
-               float:left;
-              }
-    #content3 {width:90%;
-               float:right;
-    }
-    </style>
-
-</head>
+<?php
+    include 'headlink.php';
+?>
 
 <body id="page-top" class="index">
 
@@ -127,18 +88,18 @@
                     $count = 0;
                     for($i=0; $i < $nums; $i++){
                         $va = mysql_fetch_row($list);
-                        if($va[5] == ""){
-                            $va[5] = "未命名.png";
+                        if($va[7] == ""){
+                            $va[7] = "未命名.png";
                         }
                         echo '<div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
-                                <img src="img/upload/'.$va[5].'" alt="" height="300">
+                                <img src="img/upload/'.$va[7].'" alt="" height="300">
                                 <div class="caption" style="background:#eeeeee">';
                         echo '<a href="show.php?id='.$va[0].'""><h3>'.$va[2].'</h3></a>';
-                        echo '<p>'.$va[3].'</p>';
-                        echo '<p>12:30p.m.</p>';
-                        echo '<p>臺大二活蘇格拉底廳</p>';
-                        echo '<p>瀏覽人次: '.$va[6].'</p>';
+                        echo '<p> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> '.$va[3].'</p>';
+                        echo '<p> <span class="glyphicon glyphicon-time" aria-hidden="true"></span> '.$va[4].'</p>';
+                        echo '<p> <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> '.$va[5].'</p>';
+                        echo '<p> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 瀏覽人次: '.$va[8].'</p>';
                         echo '</div>
                             </div>
                         </div>';

@@ -51,6 +51,8 @@
             $name1 = @$_SESSION['username1'];
             $name2 = @$_POST['name2'];
             $date = @$_POST['date'];
+            $time = @$_POST['time'];
+            $site = @$_POST['site'];
             $info = @$_POST['info'];
             $fileContents = "";
             $filetype = "";
@@ -72,7 +74,7 @@
                     $list = mysql_query($str);
                     $n = mysql_num_rows($list);
                     $n = $n + 1;
-                    $sql = "insert into 活動 (活動ID, 使用者名稱, 活動名稱, 活動日期, 活動資訊, 圖片名稱) values ('$n', '$name1', '$name2', '$date', '$info', '".$filename. "')";
+                    $sql = "insert into 活動 (活動ID, 使用者名稱, 活動名稱, 活動日期, 活動時間, 活動地點, 活動資訊, 圖片名稱) values ('$n', '$name1', '$name2', '$date', '$time', '$site', '$info', '".$filename. "')";
                     if(mysql_query($sql))
                     {
                             echo '<h3>活動創辦成功!!</h3>';

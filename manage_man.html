@@ -45,13 +45,13 @@
             include("mysql_connect.php");
             $search = @$_POST['search'];
 
-            $sql = "SELECT * FROM 活動 WHERE (活動ID = '%$search%' OR 使用者名稱 LIKE '%$search%' OR 活動名稱 LIKE '%$search%') ORDER BY 活動日期";
+            $sql = 'SELECT * FROM 活動 AS A, 參加 AS B WHERE  A.活動ID = B.活動ID AND username = "'.@$_SESSION['username2'].'"';
             $list = mysql_query($sql);
             echo '<section id="portfolio">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>搜尋結果</h2>
+                    <h2>您參加的活動</h2>
                     <hr class="star-primary">
                 </div>
             </div>
@@ -60,25 +60,24 @@
             if($nums > 0){
                 while($va = mysql_fetch_row($list))
                 {
-                    if($va[7] == ""){
-                        $va[7] = "未命名.png";
+                    if($va[4] == ""){
+                        $va[4] = "未命名.png";
                     }
                     echo '<div class="col-sm-6 col-md-4">
                         <div class="thumbnail">
-                            <img src="img/upload/'.$va[7].'" alt="" width="300">
+                            <img src="img/upload/'.$va[7].'" alt="" height="300">
                             <div class="caption" style="background:#eeeeee">';
                     echo '<a href="show.php?id='.$va[0].'""><h3>'.$va[2].'</h3></a>';
-                        echo '<p> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> '.$va[3].'</p>';
-                        echo '<p> <span class="glyphicon glyphicon-time" aria-hidden="true"></span> '.$va[4].'</p>';
-                        echo '<p> <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> '.$va[5].'</p>';
-                        echo '<p> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 瀏覽人次: '.$va[8].'</p>';
+                    echo '<p> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> '.$va[3].'</p>';
+                    echo '<p> <span class="glyphicon glyphicon-time" aria-hidden="true"></span> '.$va[4].'</p>';
+                    echo '<p> <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> '.$va[5].'</p>';
+                    echo '<p> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 瀏覽人次: '.$va[8].'</p>';
                     echo '</div>
                         </div>
                     </div>';
                 }
             }else{
-                echo "<div class = text-center><h3>SOR..沒有符合的活動...</h3></div>";
-
+                echo "<div class = text-center><h3>沒有活動</h3></div>";
             }
             echo '</div>
         </div>
@@ -93,7 +92,6 @@
     <?php
         include 'footer.php';
     ?>
-    
 </body>
 
 </html>

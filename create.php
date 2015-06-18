@@ -35,6 +35,7 @@
 <body id="page-top" class="index">
 
     <!-- Navigation -->
+
     <?php
         include 'header.php';
     ?>
@@ -45,13 +46,19 @@
                 <div class="col-md-6 column">
                     <form role="form" method="POST" action="commitact.php" Enctype="multipart/form-data">
                         <h3>
-                        辦活動~~~!
+                        辦活動
                         </h3>
                         <div class="form-group">
                             <label for="exampleInputlength">活動名稱</label><input type="text" class="form-control" name="name2">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputpublish">活動日期</label><input type="date" class="form-control" name="date">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputlength">活動時間</label><input type="time" class="form-control" name="time">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputlength">活動地點</label><input type="text" class="form-control" name="site">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputlength">活動資訊</label><textarea nrow="5" class="form-control" name="info"></textarea>
