@@ -294,5 +294,5 @@
     <script src="js/freelancer.js"></script>
 
 
-    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bootstrap/bootstrap.js"></script>
     <script src="bootstrap/docs/assets/js/vendor/holder.js"></script>

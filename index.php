@@ -1,5 +1,14 @@
-<?php session_start(); ?>
+<?php 
+    session_start(); 
+    $page = $_SERVER['PHP_SELF'];
+    $_SESSION['back'] = $page;
+
+?>
 <!DOCTYPE html>
+<script language="javascript">
+　　window.open (´warn.html´, ´Warning´, ´height=100, width=400, top=400, left=400, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no´)
+　　//寫成一行
+</script>
 <html lang="en">
 
 <?php

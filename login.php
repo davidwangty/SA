@@ -16,7 +16,7 @@
     <!-- Insert into database -->
      <div class="container">
         <div class="col-md-6 column">
-            <form role="form" method="POST" action="commitlog.php" Enctype="multipart/form-data">
+            <form role="form" method="POST" action="commitlog.php">
                 <h3>
                 登入
                 </h3>
