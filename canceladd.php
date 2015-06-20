@@ -27,10 +27,6 @@
                         echo '<h3>取消失敗...</h3><br>';
                     }
                     echo '<meta http-equiv=REFRESH CONTENT=1;url=show.php?id='.@$_GET['id'].'>'; 
-                }else{
-                    echo '<h3>請先登入</h3>';
-                    $_SESSION['back'] = 'show.php?id='.@$_GET['id'];
-                    echo '<meta http-equiv=REFRESH CONTENT=1;url=login.php>';   
                 }
             ?>
         </div>

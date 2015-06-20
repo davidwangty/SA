@@ -19,8 +19,10 @@
             include("mysql_connect.php");
             $search = @$_POST['search'];
             $search = eregi_replace("[\']+<>" , '' ,$search);
-
-            $sql = "SELECT * FROM 活動 WHERE (活動ID = '%$search%' OR 使用者名稱 LIKE '%$search%' OR 活動名稱 LIKE '%$search%') ORDER BY 活動日期";
+            if(!get_magic_quotes_gpc()){
+                $search=mysql_real_escape_string($search);
+            }
+            $sql = "SELECT * FROM 活動 WHERE (活動ID = '%$search%' OR 使用者名稱 LIKE '%$search%' OR 活動名稱 LIKE '%$search%') AND 活動ID <> 0 ORDER BY 活動日期";
             $list = mysql_query($sql);
             echo '<section id="portfolio">
         <div class="container">
