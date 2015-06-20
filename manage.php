@@ -20,7 +20,7 @@
 
     $sql = 'SELECT * FROM 活動 AS A, 參加 AS B WHERE  A.活動ID = B.活動ID AND username = "'.@$_SESSION['username2'].'"';
     $list = mysql_query($sql);
-    echo '  <div class="container-fluid">';
+    echo '  <div class="container">';
     echo '      <div class="row">';
     echo '          <div class="col-lg-12 text-center">';
     echo '              <h2>您參加的活動</h2>';
@@ -65,7 +65,8 @@
     }
     echo '      </div>';
     echo '  </div>';
-    echo '  <div class="container-fluid">';
+    echo '  <hr class="featurette-divider">';
+    echo '  <div class="container">';
     echo '      <div class="row">';
     echo '          <div class="col-lg-12 text-center">';
     echo '              <h2>您追蹤的活動</h2>';

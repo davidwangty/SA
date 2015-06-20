@@ -53,7 +53,7 @@
                     }
                 }elseif($select == 2){
                     //新增參加者帳號
-                    $sql = "insert into account (username, password, nickname, email) values ('$id', '$pw', '$nickname', 'email')";
+                    $sql = "insert into account (username, password, nickname, email) values ('$id', '$pw', '$nickname', '$email')";
                     if(mysql_query($sql))
                     {
                         echo '<h3>帳號創建成功!!...等待跳轉</h3>';

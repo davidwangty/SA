@@ -1,14 +1,99 @@
-<!-- Footer -->
+<?php session_start(); ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<?php
+    include 'headlink.php';
+?>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                      <a class="navbar-brand" href="index.php">
+                        <!-- <img alt="Brand" src="..."> -->
+                        Group 6
+                      </a>
+                    </div>
+                </div>
+            </div>
+
+            <form class="navbar-form navbar-left" role="search" method="POST" action="search.php">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="找活動囉~" name = "search">
+                </div>
+                <button type="submit" class="btn btn-default">搜尋</button>
+            </form>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="create.php">辦活動</a>
+                    </li>
+                    <?php 
+                        if(@$_SESSION['username'] != null){
+                            echo '<li><a href = "manage.php">'.@$_SESSION['username'].'</a><li><a href = "logout.php">登出</a>';
+                        }
+                        else{
+                            echo '<li><a href="register.php">註冊</a></li><li><a href="login.php">登入</a></li>';
+                        }
+                    ?>
+                </ul>
+            </div>
+
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+
+    <!-- Insert into database -->
+     <div class="container">
+        <div class="col-md-6 column">
+            <br>
+            <br>
+            <br>
+            <br>
+            <?php
+                include("mysql_connect.php");
+                $id = $_POST['id'];
+                $pw = $_POST['pw'];
+                $sql = "SELECT * FROM account where username = '$id'";
+                $result = mysql_query($sql);
+                $row = mysql_fetch_row($result);
+                if($id != null && $pw != null && $row[0] == $id && $row[1] == $pw){
+                    //將帳號寫入session，方便驗證使用者身份
+                    $_SESSION['username'] = $id;
+                    echo '<h3>登入成功!</h3><br><br>';
+                    echo '<meta http-equiv=REFRESH CONTENT=1;url='.$_SESSION['back'].'>';   
+                }
+                else
+                {
+                    echo '<h3>登入失敗!</h3><br><br>';
+                    echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';   
+                } 
+            ?>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
     <footer class="text-center">
         <div class="footer-above">
             <div class="container">
                 <div class="row">
                     <div class="footer-col col-md-4">
-                        <h3>SA</h3>
-                        <p>We are group 6~</p>
+                        <h3>Location</h3>
+                        <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
                     </div>
                     <div class="footer-col col-md-4">
-                        <h3>In the future, it can connect to:</h3>
+                        <h3>Around the Web</h3>
                         <ul class="list-inline">
                             <li>
                                 <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
@@ -28,8 +113,8 @@
                         </ul>
                     </div>
                     <div class="footer-col col-md-4">
-                        <h3>About Group 6</h3>
-                        <p>We are tring hard to make this better.</p>
+                        <h3>About Freelancer</h3>
+                        <p>Freelance is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
                     </div>
                 </div>
             </div>
@@ -38,7 +123,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; SA Group6 2015
+                        Copyright &copy; Your Website 2014
                     </div>
                 </div>
             </div>
@@ -268,14 +353,15 @@
                                     </strong>
                                 </li>
                             </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- jQuery -->
-    <script src="validator.js"></script>
     <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -294,5 +380,8 @@
     <script src="js/freelancer.js"></script>
 
 
-    <script src="bootstrap/bootstrap.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bootstrap/docs/assets/js/vendor/holder.js"></script>
+</body>
+
+</html>

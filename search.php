@@ -24,8 +24,8 @@
             }
             $sql = "SELECT * FROM 活動 WHERE (活動ID = '%$search%' OR 使用者名稱 LIKE '%$search%' OR 活動名稱 LIKE '%$search%') AND 活動ID <> 0 ORDER BY 活動日期";
             $list = mysql_query($sql);
-            echo '<section id="portfolio">
-        <div class="container">
+            echo '<hr class="featurette-divider">
+            <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>搜尋結果</h2>
@@ -77,8 +77,7 @@
 
             }
             echo '</div>
-        </div>
-    </section>';
+        </div><hr class="featurette-divider">';
             ?>
 
 

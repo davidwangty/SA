@@ -55,6 +55,7 @@
      <div class="container">
         <div class="col-md-6 column">
             <form role="form" method="POST" action="commitreg.php" name = "reg">
+                <hr class="featurette-divider">
                 <h3>
                 註冊
                 </h3>
@@ -81,6 +82,7 @@
                     <label for="exampleInputlength">E-mail</label><input type="text" class="form-control" name="email">
                 </div>
                 <button type="button" class="btn btn-default" onClick="validateForm(this.form)">送出</button>
+                <hr class="featurette-divider">
                 <!-- <input type="button"  value = "送出" onClick="check()"> -->
             </form>
         </div>

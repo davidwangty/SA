@@ -54,16 +54,16 @@
                     $sql = "insert into 活動 (活動ID, 使用者名稱, 活動名稱, 活動日期, 活動時間, 活動地點, 活動資訊, 圖片名稱) values ('$n', '$name1', '$name2', '$date', '$time', '$site', '$info', '".$filename. "')";
                     if(mysql_query($sql))
                     {
-                            echo '<h3>活動創辦成功!!</h3>';
+                            echo '<hr class="featurette-divider"><h3>活動創辦成功!!</h3><hr class="featurette-divider">';
                     }
                     else
                     {
-                            echo '活動創辦失敗!<br>';
+                            echo '<hr class="featurette-divider">活動創辦失敗!<br><hr class="featurette-divider">';
                     }
             }
             else
             {
-                    echo '<h3>活動名稱和日期不可為空<h3>';
+                    echo '<hr class="featurette-divider"><h3>活動名稱和日期不可為空<h3><hr class="featurette-divider">';
             }
             ?>
         </div>
