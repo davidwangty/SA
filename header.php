@@ -1,3 +1,9 @@
+<?php
+    $page = $_SERVER['PHP_SELF'];
+    if($page != "/SA/commitlog.php" && $page != "/SA/commitact.php" && $page != "/SA/commitreg.php" && $page != "/SA/register.php"){
+        $_SESSION['back'] = $page;
+    }
+?>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -32,8 +38,7 @@
                         echo '<li><a href = "manage.php">'.@$_SESSION['username2'].'</a><li><a href = "logout.php">登出</a>';
                     }
                     else{
-                        echo '<li><a href="register.php">註冊</a></li><li><a href="login.php">登入</a></li>';
-                        echo '<li><a data-toggle="modal" href="#myModal">登入(跳出視窗)</a></li>';
+                        echo '<li><a href="register.php">註冊</a></li><li><a data-toggle="modal" href="#myModal">登入</a></li>';
                     }
                 ?>
             </ul>
@@ -43,7 +48,25 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
-    <!-- Modal -->
+<script>
+        function validateFormlog(form){
+            if(form.id.value == "") 
+            {
+                alert("請輸入帳號！");
+            }
+            else if(form.pw.value == "")
+            {
+                alert("請輸入密碼！");
+            }
+            else{
+                form.submit();
+                return(true);
+            }
+            return(false);
+        }
+    </script>
+
+<!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -59,7 +82,7 @@
                         <label for="inputtype" class="col-sm-2 control-label">帳號總類</label>
                         <div class="col-sm-10">
                             <div class="radio">  
-                                <label><input type="radio" name="select" value="1" checked>主辦者</label>
+                                <label><input type="radio" name="select" value="1">主辦者</label>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <label><input type="radio" name="select" value="2" checked>參加者</label>
                             </div>  
@@ -79,7 +102,7 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">送出</button>
+                        <button type="button" class="btn btn-primary" onClick="validateFormlog(this.form)">送出</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">關閉視窗</button>
                     </div>
                 </form>
@@ -88,6 +111,7 @@
         </div>
     </div>
 </div>
+
 
 <div id="check" class="modal fade" role="dialog">
     <div class="modal-dialog">

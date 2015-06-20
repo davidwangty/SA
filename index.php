@@ -1,14 +1,8 @@
 <?php 
     session_start(); 
-    $page = $_SERVER['PHP_SELF'];
-    $_SESSION['back'] = $page;
-
 ?>
 <!DOCTYPE html>
-<script language="javascript">
-　　window.open (´warn.html´, ´Warning´, ´height=100, width=400, top=400, left=400, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no´)
-　　//寫成一行
-</script>
+
 <html lang="en">
 
 <?php
@@ -98,28 +92,32 @@
                     for($i=0; $i < $nums; $i++){
                         $va = mysql_fetch_row($list);
                         if($va[7] == ""){
-                            $va[7] = "未命名.png";
-                        }
-                        echo '<div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                <img src="img/upload/'.$va[7].'" alt="" height="300">
-                                <div class="caption" style="background:#eeeeee">';
-                        echo '<a href="show.php?id='.$va[0].'""><h3>'.$va[2].'</h3></a>';
-                        echo '<p> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> '.$va[3].'</p>';
-                        echo '<p> <span class="glyphicon glyphicon-time" aria-hidden="true"></span> '.$va[4].'</p>';
-                        echo '<p> <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> '.$va[5].'</p>';
-                        echo '<p> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 瀏覽人次: '.$va[8].'</p>';
-                        $sql2 = "SELECT COUNT(*) FROM 追蹤 WHERE 活動ID = $va[0]";
-                        $list2 = mysql_query($sql2);
-                        $va2 = mysql_fetch_row($list2);
-                        $nums2 = mysql_num_rows($list2);
-                        if($nums2 == 0){
-                            $va2[0] = 0;
-                        }
-                        echo '<p> <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> 追蹤人次: '.$va2[0].'</p>';
-                        echo '</div>
-                            </div>
-                        </div>';
+                        $va[7] = "未命名.png";
+                    }
+                    echo '<div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img src="img/upload/'.$va[7].'" alt="" width="300">
+                            <div class="caption" style="background:#eeeeee">';
+                    echo '<a href="show.php?id='.$va[0].'""><h3>';
+                    echo htmlspecialchars($va[2], ENT_QUOTES, 'UTF-8');
+                    echo '</h3></a>';
+                    echo '<p> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> '.$va[3].'</p>';
+                    echo '<p> <span class="glyphicon glyphicon-time" aria-hidden="true"></span> '.$va[4].'</p>';
+                    echo '<p> <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> ';
+                    echo htmlspecialchars($va[5], ENT_QUOTES, 'UTF-8');
+                    echo '</p>';
+                    echo '<p> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 瀏覽人次: '.$va[8].'</p>';
+                    $sql2 = "SELECT COUNT(*) FROM 追蹤 WHERE 活動ID = $va[0]";
+                    $list2 = mysql_query($sql2);
+                    $va2 = mysql_fetch_row($list2);
+                    $nums2 = mysql_num_rows($list2);
+                    if($nums2 == 0){
+                        $va2[0] = 0;
+                    }
+                    echo '<p> <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> 追蹤人次: '.$va2[0].'</p>';
+                    echo '</div>
+                        </div>
+                    </div>';
                     }
                 ?>
             </div>

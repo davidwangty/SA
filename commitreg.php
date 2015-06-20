@@ -21,10 +21,15 @@
             include("mysql_connect.php");
 
             $id = @$_POST['id'];
+            $id = eregi_replace("[\']+<>" , '' ,$id);
             $pw = @$_POST['pw'];  
+            $pw = eregi_replace("[\']+<>" , '' ,$pw);
             $pw2 = @$_POST['pw2'];
+            $pw2 = eregi_replace("[\']+<>" , '' ,$pw2);
             $nickname = @$_POST['nickname'];
+            $nickname = eregi_replace("[\']+<>" , '' ,$nickname);
             $email = @$_POST['email'];
+            $email = eregi_replace("[\']+<>" , '' ,$email);
             $select = @$_POST['select'];
 
             if($id != null && $pw != null && $pw == $pw2)
@@ -34,7 +39,7 @@
                 }
                 if($select == 1){
                     //新增主辦者帳號
-                    $sql = "insert into account_man (username, password, nickname, email) values ('$id', '$pw', '$nickname', 'email')";
+                    $sql = "insert into account_man (username, password, nickname, email) values ('$id', '$pw', '$nickname', '$email')";
                     if(mysql_query($sql))
                     {
                         echo '<h3>帳號創建成功!!...等待跳轉</h3>';

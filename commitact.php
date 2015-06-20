@@ -22,10 +22,15 @@
 
             $name1 = @$_SESSION['username1'];
             $name2 = @$_POST['name2'];
+            $name2 = eregi_replace("[\']+<>/" , '' ,$name2);
             $date = @$_POST['date'];
+            $date = eregi_replace("[\']+<>" , '' ,$date);
             $time = @$_POST['time'];
+            $time = eregi_replace("[\']+<>" , '' ,$time);
             $site = @$_POST['site'];
+            $site = eregi_replace("[\']+<>" , '' ,$site);
             $info = @$_POST['info'];
+            $info = eregi_replace("[\']+<>" , '' ,$info);
             $fileContents = "";
             $filetype = "";
             if (@$_FILES['image']['size'] > 0){
@@ -61,10 +66,6 @@
                     echo '<h3>活動名稱和日期不可為空<h3>';
             }
             ?>
-
-            <br>
-            <a href="index.php" class="btn" type="button">回首頁</a>
-            <a href="create.php" class="btn" type="button">再辦活動</a>
         </div>
     </div>
 

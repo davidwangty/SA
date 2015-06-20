@@ -122,10 +122,14 @@
                 echo '<div id="sidebar2"><br><br><br><br><br><br><br><p align="center"><img src="img/upload/'.$va[7].'" width="300"></p><br><br>
                       </div>';
                 echo '<div id="content2">';
-                echo '<article class="container"><br><br><br><br><br><br><br><h1>'.$va[2].'</h1></article>';
+                echo '<article class="container"><br><br><br><br><br><br><br><h1>';
+                echo htmlspecialchars($va[2], ENT_QUOTES, 'UTF-8');
+                echo '</h1></article>';
                 echo '<p> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> '.$va[3].'</p>';
                 echo '<p> <span class="glyphicon glyphicon-time" aria-hidden="true"></span> '.$va[4].'</p>';
-                echo '<p> <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> '.$va[5].'</p>';
+                echo '<p> <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> ';
+                echo htmlspecialchars($va[5], ENT_QUOTES, 'UTF-8');
+                echo '</p>';
                 echo '<p> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 瀏覽人次: '.$va[8].'</p>';
                 $sql2 = "SELECT COUNT(*) FROM 追蹤 WHERE 活動ID = $va[0]";
                 $list2 = mysql_query($sql2);
@@ -145,7 +149,9 @@
             <article class="container" id="info">
                 <h1>活動資訊</h1>
                 <?php
-                    echo '<p>'.$va[6].'</p>';
+                    echo '<p>';
+                    echo htmlspecialchars($va[6], ENT_QUOTES, 'UTF-8');
+                    echo '</p>';
                 ?>
             </article>
         </div>
