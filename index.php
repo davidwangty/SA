@@ -82,7 +82,7 @@
             <?php
                 include("mysql_connect.php");
 
-                $sql = "SELECT * FROM 活動  ORDER BY 瀏覽數 DESC";
+                $sql = "SELECT * FROM 活動 WHERE 活動ID <> 0 ORDER BY 瀏覽數 DESC";
                 $list = mysql_query($sql);
                 $nums=mysql_num_rows($list);
                 if($nums > 3){
